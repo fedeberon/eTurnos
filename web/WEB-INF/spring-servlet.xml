@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+          					http://www.springframework.org/schema/context
+          					http://www.springframework.org/schema/context/spring-context-3.2.xsd
+          					http://www.springframework.org/schema/mvc
+        					http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+
+    <context:component-scan base-package="com.bolivarSoftware.eTurnos.web">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="com.bolivarSoftware.eTurnos.beans,com.bolivarSoftware.eTurnos.domain">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="com.bolivarSoftware.eTurnos.services, com.bolivarSoftware.eTurnos.websocket">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="com.bolivarSoftware.eTurnos.dao">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="com.bolivarSoftware.eTurnos"/>
+
+    <mvc:annotation-driven />
+
+    <context:annotation-config/>
+
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.bolivarSoftware.eTurnos.domain"/>
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.hbm2ddl.auto" value="update"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eturnos"/>-->
+        <!--<property name="user" value="root"/>-->
+        <!--<property name="password" value=""/>-->
+
+        <property name="jdbcUrl" value="jdbc:mysqL://192.168.0.34:3306/soccam"/>
+        <property name="user" value="soccam"/>
+        <property name="password" value="soccam"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/jsp/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="mensajes"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,88 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background-color: #FFF;
+    font-size: 14px;
+    color: #1c1d1e;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: #0084cb;
+}
+
+.spacer {
+    clear: both;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 3%;
+}
+
+.col1 {
+    float: left;
+    width: 40%;
+    height: 100%;
+    padding: 1%;
+}
+
+.col2 {
+    float: right;
+    width: 60%;
+    height: 99%;
+}
+
+.head-turnos {
+    margin-bottom: 1%;
+    font-size: 3vw;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+.head-turnos .numero {
+    float: left;
+    width: 65%;
+}
+
+.head-turnos .caja {
+    float: left;
+    width: 35%;
+    text-align: center;
+}
+
+.turno {
+    transition: 1s;
+    background-color: #fff;
+    margin-bottom: 4%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 6px;
+    -ms-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    max-height: 15%;
+    font-size: 4vw;
+}
+/*.turno .numero {float: left; width: 65%; padding: 50px; padding-top: 20px; padding-bottom: 20px; padding-right: 0px; border-right: 1px solid #bcbcbc; font-size: 123px; font-weight: 700; color: #000;}*/
+/*.turno .caja {float: left; width: 35%; padding: 50px;padding-top: 20px; padding-bottom: 20px; padding-left: 0px; padding-right: 0px; text-align: center; font-size: 123px;  color: #60bb55;}*/
+
+.turno .numero {
+    float: left;
+    width: 65%;
+    padding: 2%;
+    padding-left: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.turno .caja {
+    float: left;
+    width: 35%;
+    padding: 2%;
+    text-align: center;
+    color: #60bb55;
+    font-weight: bold;
+}
