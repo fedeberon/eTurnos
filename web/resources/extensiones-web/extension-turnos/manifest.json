@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "icons": { "16": "logo-llamador.png",
+			 "48": "logo-llamador.png",
+			 "128": "logo-llamador.png" },
+  
+  "name": "Llamador de turnos",
+  "description": "Llamar turnos desde barra de tareas",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
