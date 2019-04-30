@@ -55,13 +55,13 @@
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
 
-        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eturnos"/>-->
-        <!--<property name="user" value="root"/>-->
-        <!--<property name="password" value=""/>-->
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/soccam"/>
+        <property name="user" value="root"/>
+        <property name="password" value="root"/>
 
-        <property name="jdbcUrl" value="jdbc:mysqL://192.168.0.34:3306/soccam"/>
-        <property name="user" value="soccam"/>
-        <property name="password" value="soccam"/>
+        <!--<property name="jdbcUrl" value="jdbc:mysqL://192.168.0.34:3306/soccam"/>-->
+        <!--<property name="user" value="soccam"/>-->
+        <!--<property name="password" value="soccam"/>-->
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">

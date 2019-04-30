@@ -97,6 +97,18 @@
                 </li>
             </sec:authorize>
 
+            <sec:authorize access="hasAnyRole('ROLE_CONFIG','ROLE_ADMIN')">
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-bell"></i> <span>Notificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="<c:url value='/parametros/show?id=1'/>">Nueva</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="<c:url value='/parametros/show?id=1'/>">Todas</a></li>
+                    </ul>
+                </li>
+            </sec:authorize>
+
 
         </ul>
         <!-- /.sidebar-menu -->
