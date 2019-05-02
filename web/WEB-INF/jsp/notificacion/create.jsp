@@ -38,7 +38,7 @@
                         <form modelAttribute="banner" action="/turnos/bannerUpload/uploadFile" enctype="multipart/form-data"  method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="nombre">Nombre de Publicidad</label>
+                                    <label for="">Nombre de Publicidad</label>
                                     <input name="nombre" class="form-control" placeholder="Ingrese una descripcion de la publicidad"/>
                                 </div>
 

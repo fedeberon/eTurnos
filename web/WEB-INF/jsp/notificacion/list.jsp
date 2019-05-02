@@ -11,10 +11,10 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Socios <small> Todos</small>
+                Notificaciones <small> Todas</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Socios</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Notificaciones</a></li>
                 <li class="active">Todos</li>
             </ol>
         </section>
@@ -25,21 +25,21 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
-                        <div class="box-header">
+                        <%--<div class="box-header">--%>
 
-                            <form action="<c:url value='/socio/buscar'/>">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" name="valor" value="${valor}" placeholder="Ingrese datos del socio a buscar ..">
-                                    <span class="input-group-btn">
-                                      <button type="submit" class="btn btn-info btn-flat">Buscar!</button>
-                                    </span>
-                                </div>
-                            </form>
+                            <%--<form action="<c:url value='/socio/buscar'/>">--%>
+                                <%--<div class="input-group input-group-sm">--%>
+                                    <%--<input type="text" class="form-control" name="valor" value="${valor}" placeholder="Ingrese datos del socio a buscar ..">--%>
+                                    <%--<span class="input-group-btn">--%>
+                                      <%--<button type="submit" class="btn btn-info btn-flat">Buscar!</button>--%>
+                                    <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</form>--%>
 
-                        </div>
+                        <%--</div>--%>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="usuarios" class="table table-bordered table-hover">
+                            <table id="notificacion" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>Codigo</th>
@@ -50,7 +50,7 @@
                                 </thead>
                                 <tbody>
 
-                                <c:forEach items="${notificacion}" var="bo">
+                                <c:forEach items="${notificaciones}" var="bo">
                                     <tr>
                                         <td><a href="<c:url value='/notificacion/${bo.id}'/>">${bo.id}</a></td>
                                         <td>${bo.mensaje}</td>
@@ -84,12 +84,12 @@
                     <div class="col-xs-2">
                         <a href="/turnos/notificacion/list?page=${page + 1}" class="btn btn-block btn-primary">Siguiente</a>
                     </div>
-                    <form action="<c:url value='/socio/exportarQR'/>">
-                        <div class="col-xs-2">
-                            <input type="hidden" value="${valor}" name="valor"/>
-                            <button type="submit" class="btn btn-block btn-primary">Exportar QR</button>
-                        </div>
-                    </form>
+                    <%--<form action="<c:url value='/socio/exportarQR'/>">--%>
+                        <%--<div class="col-xs-2">--%>
+                            <%--<input type="hidden" value="${valor}" name="valor"/>--%>
+                            <%--<button type="submit" class="btn btn-block btn-primary">Exportar QR</button>--%>
+                        <%--</div>--%>
+                    <%--</form>--%>
                 </div>
 
             </div>

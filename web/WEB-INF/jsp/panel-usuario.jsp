@@ -92,8 +92,8 @@
                 <li class="treeview">
                     <a href="#"><i class="fa fa-bell"></i> <span>Notificaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
-                        <li><a href="<c:url value=''/>">Nueva</a></li>
-                        <li><a href="<c:url value=''/>">Todas</a></li>
+                        <li><a href="<c:url value='/notificacion/save'/>">Nueva</a></li>
+                        <li><a href="<c:url value='/notificacion/list'/>">Todas</a></li>
                     </ul>
                 </li>
             </sec:authorize>
