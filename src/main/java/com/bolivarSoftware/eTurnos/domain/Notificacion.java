@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by Damian Gallego on 30/4/2019.
  */
 @Entity
-@Table(name = "notificacion")
+@Table(name = "notificaciones")
 public class Notificacion {
 
     @Id

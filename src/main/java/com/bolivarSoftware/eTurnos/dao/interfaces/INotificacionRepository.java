@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface INotificacionRepository {
 
-    List<Notificacion> findAll();
+    List<Notificacion> findAllPageable(Integer pageNumber);
     Notificacion save(Notificacion notificacion);
     Notificacion delete(Notificacion id);
     Notificacion update(Notificacion notificacion);

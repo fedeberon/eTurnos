@@ -30,7 +30,7 @@ public class NotificacionController {
 
     @RequestMapping("list")
     public String findAll(@RequestParam(defaultValue = "1") Integer page, Model model){
-        model.addAttribute("message", notificacionService.findAll(page));
+        model.addAttribute("usuarios", notificacionService.findAllPageable(page));
         model.addAttribute("page", page);
 
         return "notificacion/list";
