@@ -1,12 +1,14 @@
 package com.bolivarSoftware.eTurnos.dao.notificacion;
 
+import com.bolivarSoftware.eTurnos.beans.Pagination;
 import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionRepository;
+import com.bolivarSoftware.eTurnos.dao.usuario.UsuarioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import com.bolivarSoftware.eTurnos.domain.Usuario;
+import org.hibernate.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,15 +20,21 @@ import java.util.List;
 @Repository
 public class NotificacionRepository implements INotificacionRepository {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(NotificacionRepository.class);
+
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Notificacion> findAll(){
+    public List<Notificacion> findAllPageable(Integer pageNumber){
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            return session.delegate().createQuery("from Notificaciones").list();
-
-        }catch (HibernateException e){
+            Query query = session.delegate().createQuery("From  Notifiacion");
+            query.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE);
+            query.setMaxResults(Pagination.MAX_PAGE);
+            return query.list();
+        }
+        catch (HibernateException e){
+            LOGGER.error("No se pudo obtener la lista de Usuarios.",  e);
             throw e;
         }
     }
@@ -49,13 +57,11 @@ public class NotificacionRepository implements INotificacionRepository {
 
     @Override
     public Notificacion delete(Notificacion id) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.delete(id);
-        session.getTransaction().commit();
-        session.close();
-        return id;
+        return null;
     }
+
+
+
 
     @Override
     public Notificacion update(Notificacion notificacion) {
