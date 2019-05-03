@@ -1,9 +1,6 @@
 package com.bolivarSoftware.eTurnos.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -11,6 +8,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "NOTIFICACIONES")
+@GeneratedValue(strategy=GenerationType.AUTO)
 public class Notificacion {
 
     @Id
