@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Turnos.iml" filepath="$PROJECT_DIR$/Turnos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/eTurnos.iml" filepath="$PROJECT_DIR$/.idea/eTurnos.iml" />
     </modules>
   </component>
 </project>
