@@ -2,7 +2,6 @@ package com.bolivarSoftware.eTurnos.services.notificacion;
 
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
-import com.bolivarSoftware.eTurnos.domain.Usuario;
 import com.bolivarSoftware.eTurnos.services.interfaces.INotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,12 +24,34 @@ public class NotificacionService implements INotificacionService{
     }
 
     @Override
+    public void darDeBaja(String id) {
+        Notificacion notificacion = this.get(id);
+        notificacion.setActivo(false);
+        dao.save(notificacion);
+    }
+
+    @Override
+    public void activar(String id) {
+        Notificacion notificacion = this.get(id);
+        notificacion.setActivo(true);
+        dao.save(notificacion);
+        System.out.println(notificacion);
+    }
+
+    @Override
+    public Notificacion get(String id) {
+        return dao.get(id);
+    }
+
+    @Override
     public Notificacion save(Notificacion notificacion) {
         return dao.save(notificacion);
     }
 
     @Override
-    public  Notificacion delete(Notificacion id){
-        return dao.delete(id);
+    public List<Notificacion> findAll() {
+        return null;
     }
+
+
 }

@@ -10,21 +10,28 @@ import java.util.Date;
  * Created by Damian Gallego on 30/4/2019.
  */
 @Entity
-@Table(name = "notificaciones")
+@Table(name = "NOTIFICACIONES")
 public class Notificacion {
 
     @Id
-    @Column(name = "NOTIFICACIONES_ID")
+    @Column(name = "ID_NOT")
     private Integer id;
 
-    @Column(name = "NOTIFICACIONES_MENSAJE")
+    @Column(name = "MENSAJE_NOT")
     private String message;
 
-    @Column(name = "NOTIFICACIONES_DESDE")
+    @Column(name = "DESDE_NOT")
     private Date desde;
 
-    @Column(name = "NOTIFICACIONES_HASTA")
+    @Column(name = "HASTA_NOT")
     private Date hasta;
+
+    @Column(name = "ACTIVO_NOT")
+    private Boolean activo;
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
 
     public Integer getId() {
         return id;

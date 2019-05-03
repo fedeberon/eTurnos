@@ -56,15 +56,17 @@ public class NotificacionRepository implements INotificacionRepository {
     }
 
     @Override
-    public Notificacion delete(Notificacion id) {
-        return null;
-    }
+    public Notificacion get(String id){
+        if(id.equals("0")) return new Notificacion();
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from Notificacion where username = :id");
+            query.setString("id", id);
 
-
-
-
-    @Override
-    public Notificacion update(Notificacion notificacion) {
-        return null;
+            return (Notificacion) query.uniqueResult();
+        }
+        catch (HibernateException e){
+            LOGGER.error("No se pudo obtener el Usuario con id {}.", id, e);
+            throw e;
+        }
     }
 }

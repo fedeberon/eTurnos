@@ -6,8 +6,10 @@ import com.bolivarSoftware.eTurnos.services.notificacion.NotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by Damian Gallego on 30/4/2019.
@@ -20,8 +22,7 @@ public class NotificacionController {
     private NotificacionService notificacionService;
 
     @RequestMapping("save")
-    public String save(@RequestParam Integer id, @RequestParam String message){
-        Notificacion notificacion = new Notificacion();
+    public String save(@ModelAttribute Notificacion notificacion, @RequestParam String message){
         notificacion.setMessage(message);
         notificacionService.save(notificacion);
 
@@ -36,6 +37,19 @@ public class NotificacionController {
         return "notificacion/list";
     }
 
+    @RequestMapping(value = "darDeBaja")
+    public String darDeBaja(@RequestParam String id, RedirectAttributes redirectAttributes){
+        notificacionService.darDeBaja(id);
+        redirectAttributes.addAttribute("id", id);
 
+        return "redirect:show";
+    }
 
+    @RequestMapping(value = "activar")
+    public String activar(@RequestParam String id, RedirectAttributes redirectAttributes){
+        notificacionService.activar(id);
+        redirectAttributes.addAttribute("id", id);
+
+        return "redirect:show";
+    }
 }
