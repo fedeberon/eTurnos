@@ -28,7 +28,7 @@ public class NotificacionRepository implements INotificacionRepository {
     @Override
     public List<Notificacion> findAllPageable(Integer pageNumber){
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            Query query = session.delegate().createQuery("From  Notifiacion");
+            Query query = session.delegate().createQuery("From  Notificacion");
             query.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE);
             query.setMaxResults(Pagination.MAX_PAGE);
             return query.list();

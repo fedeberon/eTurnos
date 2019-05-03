@@ -43,6 +43,7 @@
                                 <thead>
                                 <tr>
                                     <th>Codigo</th>
+                                    <th>Mensaje</th>
                                     <th>Desde</th>
                                     <th>Hasta</th>
                                     <th></th>
@@ -50,25 +51,16 @@
                                 </thead>
                                 <tbody>
 
-                                <c:forEach items="${notificaciones}" var="bo">
+                                <c:forEach items="${notificacion}" var="bo">
                                     <tr>
                                         <td><a href="<c:url value='/notificacion/${bo.id}'/>">${bo.id}</a></td>
-                                        <td>${bo.mensaje}</td>
+                                        <td>${bo.message}</td>
                                         <td>${bo.desde}</td>
                                         <td>${bo.hasta}</td>
                                         <td><span class="glyphicon glyphicon-remove"></span></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Login</th>
-                                    <th>Nombre</th>
-                                    <th>Rol</th>
-                                    <th>Estado</th>
-                                    <th></th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                         <!-- /.box-body -->

@@ -2,12 +2,20 @@ package com.bolivarSoftware.eTurnos.web.notificacion;
 
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.Usuario;
+import com.bolivarSoftware.eTurnos.services.cliente.SocioService;
 import com.bolivarSoftware.eTurnos.services.notificacion.NotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Damian Gallego on 30/4/2019.
@@ -19,10 +27,11 @@ public class NotificacionController {
     @Autowired
     private NotificacionService notificacionService;
 
+    @Autowired
+    private SocioService socioService;
+
     @RequestMapping("save")
-    public String save(@RequestParam Integer id, @RequestParam String message){
-        Notificacion notificacion = new Notificacion();
-        notificacion.setMessage(message);
+    public String save(@ModelAttribute Notificacion notificacion){
         notificacionService.save(notificacion);
 
         return "redirect:list";
@@ -30,12 +39,28 @@ public class NotificacionController {
 
     @RequestMapping("list")
     public String findAll(@RequestParam(defaultValue = "1") Integer page, Model model){
-        model.addAttribute("usuarios", notificacionService.findAllPageable(page));
+        model.addAttribute("notificacion", notificacionService.findAllPageable(page));
         model.addAttribute("page", page);
 
         return "notificacion/list";
     }
 
+    @RequestMapping("create")
+    public String create() {
+        return "notificacion/create";
+    }
 
+
+    @ModelAttribute("notificacion")
+    public Notificacion getNotificacion(){
+        return new Notificacion();
+    }
+
+    @InitBinder
+    public void initBinder( WebDataBinder binder )
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat( "dd-MM-yyyy" );
+        binder.registerCustomEditor( Date.class, new CustomDateEditor( sdf, true ) );
+    }
 
 }

@@ -1,10 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE HTML>
 <html>
 <jsp:include page="../header.jsp"/>
+<head>
 
+
+</head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -15,8 +17,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Banners
-                <small>Subir Archivo</small>
+                Notificaciones
+                <small>Crear nueva notificacion</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Banners</a></li>
@@ -27,43 +29,68 @@
         <!-- Main content -->
         <section class="content">
 
+            <%--<div class="row">--%>
+                <%--<div class="col-md-6">--%>
+                    <%--<form>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label for="exampleFormControlTextarea1">Mensaje</label>--%>
+                            <%--<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label for="exampleFormControlSelect2">Lista de socios</label>--%>
+                            <%--<select multiple class="form-control" id="exampleFormControlSelect2">--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+                    <%--</form>--%>
+                <%--</div>--%>
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Subir Archivo de publicidad</h3>
-                        </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form modelAttribute="banner" action="/turnos/bannerUpload/uploadFile" enctype="multipart/form-data"  method="post">
+                        <form:form modelAttribute="notificacion" action="/turnos/notificacion/save"  method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="">Nombre de Publicidad</label>
-                                    <input name="nombre" class="form-control" placeholder="Ingrese una descripcion de la publicidad"/>
+                                    <label for="message">Mensaje</label>
+                                    <textarea name="message" class="form-control" placeholder="Ingrese el mensaje de la notificacion" rows="3"></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>
-                                        <input type="checkbox" name="publicar" class="minimal"/>
-                                        Publicar en cartel
-                                    </label>
+                                    <label for="desde">Desde:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input name="desde" type="text" class="form-control date">
+                                    </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="hasta">Hasta:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input name="hasta" type="text" class="form-control date">
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.box-body -->
 
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
-                        </form>
+                        </form:form>
                     </div>
                 </div>
-
-            </div>
-            <!-- /.box -->
+                </div>
         </section>
-        <!-- /.content -->
+
+            <!-- /.box -->
     </div>
+        <!-- /.content -->
+</div>
     <!-- /.content-wrapper -->
 
 
@@ -83,10 +110,26 @@
 <!-- AdminLTE App -->
 <script src="<c:url value='/resources/dist/js/app.min.js'/>"></script>
 
-<script src="<c:url value='/resources/plugins/websocket/sockjs.js'/>"></script>
-<script src="<c:url value='/resources/plugins/websocket/stomp.js'/>"></script>
-<script src="<c:url value='/resources/websocket/websocket.js'/>"></script>
 
+
+
+<!-- InputMask -->
+<script src="<c:url value='/resources/plugins/input-mask/jquery.inputmask.js'/>"></script>
+<script src="<c:url value='/resources/plugins/input-mask/jquery.inputmask.date.extensions.js'/>"></script>
+<script src="<c:url value='/resources/plugins/input-mask/jquery.inputmask.extensions.js'/>"></script>
+
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+
+<script src="<c:url value='/resources/plugins/daterangepicker/daterangepicker.js'/>"></script>
+<!-- bootstrap color picker -->
+<script src="<c:url value='/resources/plugins/colorpicker/bootstrap-colorpicker.min.js'/>"></script>
+<!-- bootstrap time picker -->
+<script src="<c:url value='/resources/plugins/timepicker/bootstrap-timepicker.min.js'/>"></script>
+
+<script src="<c:url value='/resources/dist/js/datepicker.js'/>"></script>
 
 </body>
 </html>
