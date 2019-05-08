@@ -1,7 +1,7 @@
 package com.bolivarSoftware.eTurnos.dao.interfaces;
 
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
-import com.bolivarSoftware.eTurnos.domain.Usuario;
+
 
 import java.util.List;
 
@@ -12,6 +12,5 @@ public interface INotificacionRepository {
 
     List<Notificacion> findAllPageable(Integer pageNumber);
     Notificacion save(Notificacion notificacion);
-    Notificacion delete(Notificacion id);
-    Notificacion update(Notificacion notificacion);
+    Notificacion get(String id);
 }

@@ -72,7 +72,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form:form modelAttribute="notificacion" action="/turnos/notificacion/save"  method="post">
-                            <div class="box-body ">
+                            <div class="box-body">
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="desde">Desde:</label>
@@ -83,9 +83,9 @@
                                             <input name="desde" type="text" class="form-control date">
                                         </div>
                                     </div>
+                                </div>
 
-
-
+                                <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="hasta">Hasta:</label>
                                         <div class="input-group">

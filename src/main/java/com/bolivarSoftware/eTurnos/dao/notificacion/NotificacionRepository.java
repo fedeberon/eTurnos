@@ -6,6 +6,7 @@ import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionRepository;
 import com.bolivarSoftware.eTurnos.dao.usuario.UsuarioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.Usuario;
+import org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression;
 import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class NotificacionRepository implements INotificacionRepository {
     @Override
     public List<Notificacion> findAllPageable(Integer pageNumber){
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            Query query = session.delegate().createQuery("From  Notificacion");
+            Query query = session.delegate().createQuery("From  Notificacion order by id desc");
             query.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE);
             query.setMaxResults(Pagination.MAX_PAGE);
             return query.list();
@@ -56,15 +57,17 @@ public class NotificacionRepository implements INotificacionRepository {
     }
 
     @Override
-    public Notificacion delete(Notificacion id) {
-        return null;
-    }
+    public Notificacion get(String id){
+        if(id.equals("0")) return new Notificacion();
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from Notificacion where username = :id");
+            query.setString("id", id);
 
-
-
-
-    @Override
-    public Notificacion update(Notificacion notificacion) {
-        return null;
+            return (Notificacion) query.uniqueResult();
+        }
+        catch (HibernateException e){
+            LOGGER.error("No se pudo obtener el Usuario con id {}.", id, e);
+            throw e;
+        }
     }
 }
