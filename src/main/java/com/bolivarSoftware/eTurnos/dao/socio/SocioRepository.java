@@ -141,4 +141,15 @@ public class SocioRepository implements ISocioRepository {
         }
     }
 
+
+    @Override
+    public List<Socio> findAll(){
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            Query query = session.delegate().createQuery("From Socio");
+            return query.list();
+        } catch (HibernateException e) {
+            LOGGER.error("No se pudo obtener la lista de Socios.", e);
+            throw e;
+        }
+    }
 }

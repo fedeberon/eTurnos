@@ -50,7 +50,7 @@ public class SocioService implements ISocioService {
 
     @Override
     public List<Socio> findAll() {
-        return null;
+        return dao.findAll();
     }
 
     @Override

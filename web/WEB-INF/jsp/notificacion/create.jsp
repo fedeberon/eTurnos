@@ -4,7 +4,45 @@
 <html>
 <jsp:include page="../header.jsp"/>
 <head>
+    <%--<link rel="stylesheet" type='text/css' href="<c:url value='https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css'/>"/>--%>
 
+    <%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
+    <%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--%>
+    <%--<script>--%>
+        <%--$( function() {--%>
+            <%--function log( message ) {--%>
+                <%--$( "<div>" ).text( message ).prependTo( "#log" );--%>
+                <%--$( "#log" ).scrollTop( 0 );--%>
+            <%--}--%>
+
+            <%--$( "#birds" ).autocomplete({--%>
+                <%--source: function( request, response ) {--%>
+                    <%--$.ajax( {--%>
+                        <%--url: "http://localhost:8082/turnos/restSocio/list",--%>
+                        <%--dataType: "json",--%>
+                        <%--data: {--%>
+                            <%--term: request.term--%>
+                        <%--},--%>
+                        <%--success: function(data){--%>
+                            <%--if(data.length == 0) return response(["No matching cities found for " + request.term]);--%>
+                            <%--response( $.map(data, function(item){--%>
+                                        <%--return{--%>
+                                            <%--label: item.nombre,--%>
+                                            <%--value: item.apellido--%>
+                                        <%--};--%>
+                                    <%--})--%>
+                            <%--);--%>
+                        <%--}--%>
+                    <%--} );--%>
+
+                <%--},--%>
+                <%--minLength: 4,--%>
+                <%--select: function( event, ui ) {--%>
+                    <%--log( "Selected: " + ui.item.value + " aka " + ui.item.nombre );--%>
+                <%--}--%>
+            <%--} );--%>
+        <%--} );--%>
+    <%--</script>--%>
 
 </head>
 
@@ -52,22 +90,6 @@
 
         <!-- Main content -->
         <section class="content">
-
-            <%--<div class="row">--%>
-                <%--<div class="col-md-6">--%>
-                    <%--<form>--%>
-                        <%--<div class="form-group">--%>
-                            <%--<label for="exampleFormControlTextarea1">Mensaje</label>--%>
-                            <%--<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>--%>
-                        <%--</div>--%>
-                        <%--<div class="form-group">--%>
-                            <%--<label for="exampleFormControlSelect2">Lista de socios</label>--%>
-                            <%--<select multiple class="form-control" id="exampleFormControlSelect2">--%>
-                            <%--</select>--%>
-                        <%--</div>--%>
-                    <%--</form>--%>
-                <%--</div>--%>
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="box box-primary">
@@ -75,28 +97,34 @@
                         <!-- form start -->
                         <form:form modelAttribute="notificacion" action="/turnos/notificacion/save"  method="post">
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label for="message">Mensaje</label>
-                                    <textarea name="message" class="form-control" placeholder="Ingrese el mensaje de la notificacion" rows="3"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="desde">Desde:</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="desde">Desde:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input name="desde" type="text" class="form-control date">
                                         </div>
-                                        <input name="desde" type="text" class="form-control date">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="hasta">Hasta:</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="hasta">Hasta:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input name="hasta" type="text" class="form-control date">
                                         </div>
-                                        <input name="hasta" type="text" class="form-control date">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="message">Mensaje</label>
+                                        <textarea name="message" class="form-control" placeholder="Ingrese el mensaje de la notificacion" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -108,8 +136,18 @@
                         </form:form>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
+        <%--<br /><br />--%>
+        <%--<div class="ui-widget">--%>
+            <%--<label for="birds">Birds: </label>--%>
+            <%--<input id="birds">--%>
+        <%--</div>--%>
+
+        <%--<div class="ui-widget" style="margin-top:2em; font-family:Arial">--%>
+            <%--Result:--%>
+            <%--<div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>--%>
+        <%--</div>--%>
 
             <!-- /.box -->
     </div>
@@ -127,15 +165,13 @@
 
 <!-- jQuery 2.2.0 -->
 <script src="<c:url value='/resources/plugins/jQuery/jQuery-2.2.0.min.js'/>"></script>
+<script src="<c:url value='/resources/plugins/jQueryUI/jquery-ui.js'/>"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="<c:url value='/webjarslocator/bootstrap/js/bootstrap.min.js'/>"></script>
 <!-- DataTables -->
 <script src="<c:url value='/resources/plugins/datatables/jquery.dataTables.min.js'/>"></script>
 <!-- AdminLTE App -->
 <script src="<c:url value='/resources/dist/js/app.min.js'/>"></script>
-
-
-
 
 <!-- InputMask -->
 <script src="<c:url value='/resources/plugins/input-mask/jquery.inputmask.js'/>"></script>
