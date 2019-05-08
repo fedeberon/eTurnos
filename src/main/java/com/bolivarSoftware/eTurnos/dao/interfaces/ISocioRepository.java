@@ -20,4 +20,6 @@ public interface ISocioRepository {
     List<Socio> buscar(String valor);
 
     void crearImagenQR(List<Socio> socios) throws JRException, IOException;
+
+    List<Socio> findAll();
 }

@@ -58,7 +58,7 @@
           <element id="library" level="project" name="Maven: org.apache.commons:commons-compress:1.9" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
           <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.3.7-1" />
-          <element id="library" level="project" name="Maven: org.webjars:jquery:1.11.1" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:3.4.0" />
           <element id="library" level="project" name="Maven: net.sf.jasperreports:jasperreports:5.0.1" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:2.1" />

@@ -20,4 +20,6 @@ public interface ISocioService extends ICommonService<Socio, Long>{
     List<Socio> buscar(String valor);
 
     void crearImagenQR(List<Socio> socios);
+
+    List<Socio> findAll();
 }
