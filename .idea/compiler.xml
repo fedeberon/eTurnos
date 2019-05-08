@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="eTurnos" />
+        <module name="Turnos" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="eTurnos" target="1.8" />
+      <module name="Turnos" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
