@@ -8,11 +8,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "NOTIFICACIONES")
-@GeneratedValue(strategy=GenerationType.AUTO)
 public class Notificacion {
 
     @Id
     @Column(name = "ID_NOT")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "MENSAJE_NOT")
@@ -23,13 +23,6 @@ public class Notificacion {
 
     @Column(name = "HASTA_NOT")
     private Date hasta;
-
-    @Column(name = "ACTIVO_NOT")
-    private Boolean activo;
-
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
 
     public Integer getId() {
         return id;

@@ -9,6 +9,30 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+<script>
+    $(document).ready(function(){
+        $.ajaxSetup({ cache: false });
+        $('#search').keyup(function(){
+            $('#result').html('');
+            $('#state').val('');
+            var searchField = $('#search').val();
+            var expression = new RegExp(searchField, "i");
+            $.getJSON('http://localhost:8082/turnos/restSocio/list', function(data) {
+                $.each(data, function(key, value){
+                    if (value.nombre.search(expression) != -1 || value.apellido.search(expression) != -1)
+                    {
+                        $
+                    }('#result').append('<li class="list-group-item link-class"> '+value.nombre+' | <span class="text-muted">'+value.apellido+'</span></li>');
+                });
+            });
+        });
+        $('#result').on('click', 'li', function() {
+            var click_text = $(this).text().split('|');
+            $('#search').val($.trim(click_text[0]));
+            $("#result").html('');
+        });
+    });
+</script>
 <div class="wrapper">
     <jsp:include page="../menu.jsp"/>
     <jsp:include page="../panel-usuario.jsp"/>

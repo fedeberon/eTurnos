@@ -12,6 +12,5 @@ public interface INotificacionRepository {
 
     List<Notificacion> findAllPageable(Integer pageNumber);
     Notificacion save(Notificacion notificacion);
-
     Notificacion get(String id);
 }

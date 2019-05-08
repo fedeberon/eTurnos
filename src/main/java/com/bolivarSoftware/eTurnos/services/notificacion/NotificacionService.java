@@ -24,21 +24,6 @@ public class NotificacionService implements INotificacionService{
     }
 
     @Override
-    public void darDeBaja(String id) {
-        Notificacion notificacion = this.get(id);
-        notificacion.setActivo(false);
-        dao.save(notificacion);
-    }
-
-    @Override
-    public void activar(String id) {
-        Notificacion notificacion = this.get(id);
-        notificacion.setActivo(true);
-        dao.save(notificacion);
-        System.out.println(notificacion);
-    }
-
-    @Override
     public Notificacion get(String id) {
         return dao.get(id);
     }
@@ -52,6 +37,5 @@ public class NotificacionService implements INotificacionService{
     public List<Notificacion> findAll() {
         return null;
     }
-
 
 }

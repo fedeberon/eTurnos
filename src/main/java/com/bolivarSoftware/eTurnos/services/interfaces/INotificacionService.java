@@ -11,7 +11,5 @@ import java.util.List;
  */
 public interface INotificacionService extends ICommonService<Notificacion, String> {
     List<Notificacion> findAllPageable(Integer page);
-    void darDeBaja(String id);
-    void activar(String id);
     Notificacion save(Notificacion notificacion);
 }

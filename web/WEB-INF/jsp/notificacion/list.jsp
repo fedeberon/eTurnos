@@ -1,4 +1,5 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE HTML>
 <html>
 <jsp:include page="../header.jsp"/>
@@ -51,7 +52,7 @@
                                 </thead>
                                 <tbody>
 
-                                <c:forEach items="${notificacion}" var="bo">
+                                <c:forEach items="${notificacion}" var="bo" >
                                     <tr>
                                         <td><a href="<c:url value='/notificacion/${bo.id}'/>">${bo.id}</a></td>
                                         <td>${bo.message}</td>
