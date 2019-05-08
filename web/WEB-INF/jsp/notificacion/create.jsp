@@ -72,7 +72,7 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form:form modelAttribute="notificacion" action="/turnos/notificacion/save"  method="post">
-                            <div class="box-body">
+                            <div class="box-body ">
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="desde">Desde:</label>
@@ -83,9 +83,9 @@
                                             <input name="desde" type="text" class="form-control date">
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
+
+
                                     <div class="form-group col-md-6">
                                         <label for="hasta">Hasta:</label>
                                         <div class="input-group">
@@ -100,12 +100,11 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="message">Mensaje</label>
-                                        <textarea name="message" class="form-control" placeholder="Ingrese el mensaje de la notificacion" rows="3"></textarea>
+                                        <textarea name="message" class="form-control" maxlength="255" placeholder="Ingrese el mensaje de la notificacion" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->
-
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
