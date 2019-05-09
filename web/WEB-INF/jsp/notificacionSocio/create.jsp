@@ -4,36 +4,49 @@
 <html>
 <jsp:include page="../header.jsp"/>
 <head>
+
+    <style>
+       .ui-autocomplete-loading {
+            background: white url('/resources/dist/img/giphy.gif') right center no-repeat;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-    $( function() {
+        $( function() {
         function log( message ) {
         $( "<div>" ).text( message ).prependTo( "#log" );
-        $( "#log" ).scrollTop( 0 );
-    }
+        $( "#log" ).scrollTop( 0 )
+        }
 
     $( "#socios" ).autocomplete({
         source: function( request, response ) {
             $.ajax( {
-            url: "http://localhost:8082/turnos/restSocio/list",
+            url: "/turnos/restSocio/list",
             dataType: "json",
             data: {
             term: request.term
             },
             success: function(data){
+            var re = $.ui.autocomplete.escapeRegex(request.term);
+            var matcher = new RegExp("^" + re, "i");
             if(data.length == 0) return response(["No matching cities found for " + request.term]);
-                response( $.map(data, function(item){
-                    return{
-                    label: item.nombre,
-                    value: item.apellido
+                response($.grep(($.map(data, function (v, i) {
+                    return {
+                        value: v.id,
+                        label: v.nombre,
+                        dni: v.dni,
+                        apellido: v.apellido
                     };
-                    })
-                );
-            }
-            } );
+                })), function (item) {
+                    return matcher.test(item.label);
+                }))
+            }});
     },
-    minLength: 4,
+    minLength: 2,
     select: function( event, ui ) {
-    log( "Selected: " + ui.item.value + " aka " + ui.item.nombre );
+     log(ui.item.label + " " + ui.item.apellido + " " + ui.item.dni);
     }
     } );
     } );
@@ -70,8 +83,10 @@
                 Socios a notificar:
                 <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
             </div>
-        </section>
 
+            <br>
+            <input type="text" id="demo" name="email">
+        </section>
         <!-- /.box -->
     </div>
     <!-- /.content -->
@@ -113,6 +128,10 @@
 <script src="<c:url value='/resources/plugins/timepicker/bootstrap-timepicker.min.js'/>"></script>
 
 <script src="<c:url value='/resources/dist/js/datepicker.js'/>"></script>
+
+<!-- style jquery-ui -->
+<link rel="stylesheet" type='text/css' href="<c:url value='https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css'/>"/>
+
 
 </body>
 </html>

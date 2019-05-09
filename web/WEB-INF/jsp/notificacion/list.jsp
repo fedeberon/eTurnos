@@ -58,7 +58,7 @@
                                         <td class="col-md-6">${bo.message}</td>
                                         <td class="col-md-1">${bo.desde}</td>
                                         <td class="col-md-1">${bo.hasta}</td>
-                                        <td class="col-md-3"> <a class="btn btn-link" href="<c:url value=''/>"/>Agregar Socios</td>
+                                        <td class="col-md-3"> <a class="btn btn-link" href="<c:url value='/notificacionSocio/create'/>"/>Agregar Socios</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
