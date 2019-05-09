@@ -47,18 +47,18 @@
                                     <th>Mensaje</th>
                                     <th>Desde</th>
                                     <th>Hasta</th>
-                                    <th></th>
+                                    <th>Socios Notificados</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <c:forEach items="${notificacion}" var="bo" >
                                     <tr>
-                                        <td><a href="<c:url value='/notificacion/${bo.id}'/>">${bo.id}</a></td>
-                                        <td>${bo.message}</td>
-                                        <td>${bo.desde}</td>
-                                        <td>${bo.hasta}</td>
-                                        <td><span class="glyphicon glyphicon-remove"></span></td>
+                                        <td class="col-md-1"><a href="<c:url value='/notificacion/${bo.id}'/>">${bo.id}</a></td>
+                                        <td class="col-md-6">${bo.message}</td>
+                                        <td class="col-md-1">${bo.desde}</td>
+                                        <td class="col-md-1">${bo.hasta}</td>
+                                        <td class="col-md-3"> <a class="btn btn-link" href="<c:url value='/notificacionSocio/create'/>"/>Agregar Socios</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

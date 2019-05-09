@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by Damian Gallego on 8/5/2019.
  */
 @Controller
+@RequestMapping("notificacionSocio")
 public class NotificacionSocioController {
 
     @Autowired
@@ -31,6 +32,11 @@ public class NotificacionSocioController {
         model.addAttribute("notificacionSocio", notificacionSocioService.findAllPageable(page));
         model.addAttribute("page", page);
 
+        return "notificacionSocio/create";
+    }
+
+    @RequestMapping("create")
+    public String create() {
         return "notificacionSocio/create";
     }
 
