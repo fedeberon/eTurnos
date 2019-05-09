@@ -1,8 +1,6 @@
 package com.bolivarSoftware.eTurnos.web.notificacion;
 
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
-import com.bolivarSoftware.eTurnos.domain.Usuario;
-import com.bolivarSoftware.eTurnos.services.cliente.SocioService;
 import com.bolivarSoftware.eTurnos.services.notificacion.NotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;

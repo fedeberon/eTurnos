@@ -1,4 +1,4 @@
-package com.bolivarSoftware.eTurnos.web;
+package com.bolivarSoftware.eTurnos.web.notificacionSocio;
 
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
