@@ -55,17 +55,14 @@ public class NotificacionRepository implements INotificacionRepository {
     }
 
     @Override
-    public Notificacion get(String id){
-        if(id.equals("0")) return new Notificacion();
+    public Notificacion get(Integer id){
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            Query query = session.delegate().createQuery("from Notificacion where username = :id");
-            query.setString("id", id);
-
-            return (Notificacion) query.uniqueResult();
+            return (Notificacion) session.delegate().get(Notificacion.class, id);
         }
         catch (HibernateException e){
-            LOGGER.error("No se pudo obtener el Usuario con id {}.", id, e);
+            LOGGER.error("No se pudo obtener la Notificacion con id {}.", id, e);
             throw e;
         }
     }
+
 }

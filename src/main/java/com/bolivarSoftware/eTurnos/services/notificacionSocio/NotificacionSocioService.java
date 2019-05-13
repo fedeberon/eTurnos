@@ -1,7 +1,6 @@
 package com.bolivarSoftware.eTurnos.services.notificacionSocio;
 
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
-import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +25,16 @@ public class NotificacionSocioService implements INotificacionSocioRepository{
     @Override
     public NotificacionSocio save(NotificacionSocio notificacionSocio) {
         return dao.save(notificacionSocio);
+    }
+
+    @Override
+    public List<NotificacionSocio> save(List<NotificacionSocio> notificacionesSocios) {
+        return dao.save(notificacionesSocios);
+    }
+
+    @Override
+    public NotificacionSocio get(Integer id)
+    {
+        return dao.get(id);
     }
 }

@@ -5,10 +5,7 @@ import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +53,55 @@ public class NotificacionSocioRepository implements INotificacionSocioRepository
             throw e;
         }
     }
+
+    @Override
+    public NotificacionSocio get(Integer id)
+    {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            NotificacionSocio notificacionSocio = (NotificacionSocio) session.get(Notificacion.class, id);
+            return notificacionSocio;
+        }
+        catch (HibernateException e) {
+            throw e;
+        }
+        finally {
+            if ((session != null) && (session.isOpen())) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public List<NotificacionSocio> getBySocio(Integer idSocio) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("From  NotificacionSocio where socio.id = ? order by id desc");
+            query.setInteger(0 , idSocio);
+            return query.list();
+        }
+        catch (HibernateException e){
+            LOGGER.error("No se pudo obtener la lista de Usuarios.",  e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<NotificacionSocio> save(List<NotificacionSocio> notificacionesSocios) {
+        Transaction tx = null;
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            tx = session.delegate().getTransaction();
+            tx.begin();
+            notificacionesSocios.forEach(notificacion -> session.delegate().save(notificacion));
+            tx.commit();
+
+            return notificacionesSocios;
+        }
+        catch (HibernateException e){
+            tx.rollback();
+            throw e;
+        }
+    }
+
+
 }

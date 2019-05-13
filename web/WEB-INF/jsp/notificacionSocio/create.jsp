@@ -15,10 +15,29 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $( function() {
-        function log( message ) {
-        $( "<div>" ).text( message ).prependTo( "#log" );
-        $( "#log" ).scrollTop( 0 )
-        }
+            var indice = 0;
+            function log(id, message ) {
+
+                var inputSocio = $('<input>',{
+                    type:'hidden',
+                    name: 'notificaciones[' + indice  + '].socio.id',
+                    value: id
+                });
+
+                var inputNotificacion = $('<input>',{
+                    type:'hidden',
+                    name: 'notificaciones[' + indice  + '].notificacion.id',
+                    value: ${notificacion.id}
+                });
+
+                $( "<div>" ).text( message ).prependTo( "#log" );
+                $( "#log" ).scrollTop( 0 );
+
+                inputSocio.prependTo("#formSocios");
+                inputNotificacion.prependTo("#formSocios");
+
+                indice++;
+            }
 
     $( "#socios" ).autocomplete({
         source: function( request, response ) {
@@ -34,10 +53,11 @@
             if(data.length == 0) return response(["No matching cities found for " + request.term]);
                 response($.grep(($.map(data, function (v, i) {
                     return {
-                        value: v.id,
+                        value: v.nombre,
                         label: v.nombre,
                         dni: v.dni,
-                        apellido: v.apellido
+                        apellido: v.apellido,
+                        id: v.id
                     };
                 })), function (item) {
                     return matcher.test(item.label);
@@ -46,7 +66,7 @@
     },
     minLength: 2,
     select: function( event, ui ) {
-     log(ui.item.label + " " + ui.item.apellido + " " + ui.item.dni);
+     log(ui.item.id,  ui.item.label + "  " + ui.item.apellido);
     }
     } );
     } );
@@ -74,18 +94,32 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="ui-widget">
-                <label for="socios">Socios: </label>
-                <input id="socios">
-            </div>
 
-            <div class="ui-widget" style="margin-top:2em; font-family:Arial">
-                Socios a notificar:
-                <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-            </div>
+            <form:form modelAttribute="notificionesSocios" action="save" method="post" id="formSocios">
 
-            <br>
-            <input type="text" id="demo" name="email">
+                <div class="ui-widget">
+                    <label for="socios">Socios: </label>
+                    <input id="socios">
+                </div>
+
+                <div class="ui-widget" style="margin-top:2em; font-family:Arial">
+                    Socios a notificar:
+                    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+                </div>
+
+
+                <div class="ui-widget">
+                    <label for="socios">Mensaje: ${notificacion.message}</label>
+                </div>
+
+                <br/>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary" action="save"  method="post">Guardar</button>
+                </div>
+
+            </form:form>
+
         </section>
         <!-- /.box -->
     </div>

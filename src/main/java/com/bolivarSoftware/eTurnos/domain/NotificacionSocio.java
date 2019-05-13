@@ -3,6 +3,7 @@ package com.bolivarSoftware.eTurnos.domain;
 import com.bolivarSoftware.eTurnos.domain.socio.Socio;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Damian Gallego on 2/5/2019.
@@ -13,6 +14,7 @@ public class NotificacionSocio {
 
     @Id
     @Column(name = "ID_NOT_SOC")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
 
     @OneToOne
@@ -22,6 +24,7 @@ public class NotificacionSocio {
     @OneToOne
     @JoinColumn(name = "SOCIO_ID")
     private Socio socio;
+
 
     public Integer getId() {
         return Id;

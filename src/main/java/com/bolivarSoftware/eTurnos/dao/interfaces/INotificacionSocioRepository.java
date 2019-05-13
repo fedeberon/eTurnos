@@ -2,6 +2,7 @@ package com.bolivarSoftware.eTurnos.dao.interfaces;
 
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,6 +10,14 @@ import java.util.List;
  */
 
 public interface INotificacionSocioRepository {
+
     List<NotificacionSocio> findAllPageable(Integer pageNumber);
+
     NotificacionSocio save(NotificacionSocio notificacionSocio);
+
+    List<NotificacionSocio> save(List<NotificacionSocio> notificacionesSocios);
+
+    NotificacionSocio get(Integer id);
+
+    List<NotificacionSocio> getBySocio(Integer idSocio);
 }

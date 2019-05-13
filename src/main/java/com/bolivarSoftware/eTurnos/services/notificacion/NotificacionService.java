@@ -24,7 +24,7 @@ public class NotificacionService implements INotificacionService{
     }
 
     @Override
-    public Notificacion get(String id) {
+    public Notificacion get(Integer id) {
         return dao.get(id);
     }
 

@@ -57,8 +57,8 @@
                                         <td class="col-md-1"><a href="<c:url value='/notificacion/${bo.id}'/>">${bo.id}</a></td>
                                         <td class="col-md-6">${bo.message}</td>
                                         <td class="col-md-1">${bo.desde}</td>
-                                        <td class="col-md-1">${bo.hasta}</td>
-                                        <td class="col-md-3"> <a class="btn btn-link" href="<c:url value='/notificacionSocio/create'/>"/>Agregar Socios</td>
+                                        <td class="col-md-2">${bo.hasta}</td>
+                                        <td class="col-md-2"> <a class="btn btn-link" href="<c:url value='/notificacionSocio/create?id=${bo.id}'/>"/>Agregar Socios</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
