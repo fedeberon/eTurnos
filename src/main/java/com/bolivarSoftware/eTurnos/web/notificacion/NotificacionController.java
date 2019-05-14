@@ -42,6 +42,15 @@ public class NotificacionController {
         return "notificacion/list";
     }
 
+    @RequestMapping("show")
+    public String show(@RequestParam Integer id,  Model model){
+        model.addAttribute("notificacion", notificacionService.get(id));
+
+        return "notificacionSocio/show";
+    }
+
+
+
     @RequestMapping("create")
     public String create() {
         return "notificacion/create";

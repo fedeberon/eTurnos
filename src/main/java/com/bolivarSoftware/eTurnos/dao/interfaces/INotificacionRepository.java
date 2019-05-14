@@ -1,6 +1,7 @@
 package com.bolivarSoftware.eTurnos.dao.interfaces;
 
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
+import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface INotificacionRepository {
     Notificacion save(Notificacion notificacion);
     Notificacion get(Integer id);
 
+    List<NotificacionSocio> getById(Integer idNotificacion);
 }

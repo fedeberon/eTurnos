@@ -37,4 +37,9 @@ public class NotificacionSocioService implements INotificacionSocioRepository{
     {
         return dao.get(id);
     }
+
+    @Override
+    public List<NotificacionSocio> getBySocio(Integer idSocio) {
+        return dao.getBySocio(idSocio);
+    }
 }

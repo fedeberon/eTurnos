@@ -2,6 +2,7 @@ package com.bolivarSoftware.eTurnos.services.notificacion;
 
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
+import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 import com.bolivarSoftware.eTurnos.services.interfaces.INotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,12 @@ public class NotificacionService implements INotificacionService{
     public List<Notificacion> findAll() {
         return null;
     }
+
+    @Override
+    public List<NotificacionSocio> getById(Integer idNotificacion) {
+        return dao.getById(idNotificacion);
+    }
+
+
 
 }

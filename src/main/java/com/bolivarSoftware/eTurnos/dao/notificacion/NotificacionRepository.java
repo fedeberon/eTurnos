@@ -4,6 +4,7 @@ import com.bolivarSoftware.eTurnos.beans.Pagination;
 import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
+import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 import org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression;
 import org.hibernate.*;
 import org.slf4j.Logger;
@@ -61,6 +62,18 @@ public class NotificacionRepository implements INotificacionRepository {
         }
         catch (HibernateException e){
             LOGGER.error("No se pudo obtener la Notificacion con id {}.", id, e);
+            throw e;
+        }
+    }
+    @Override
+    public List<NotificacionSocio> getById(Integer idNotificacion) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("From  NotificacionSocio where idNotificacion = ? order by idNotificacion desc");
+            query.setInteger(0 , idNotificacion);
+            return query.list();
+        }
+        catch (HibernateException e){
+            LOGGER.error("No se pudo obtener la lista de Usuarios.",  e);
             throw e;
         }
     }

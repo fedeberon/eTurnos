@@ -1,6 +1,7 @@
 package com.bolivarSoftware.eTurnos.web.notificacionSocio;
 
 import com.bolivarSoftware.eTurnos.beans.NotificacionesSocios;
+import com.bolivarSoftware.eTurnos.beans.RedirectAuthentication;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 import com.bolivarSoftware.eTurnos.services.notificacion.NotificacionService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,11 +33,11 @@ public class NotificacionSocioController {
     public String save(@ModelAttribute NotificacionesSocios notificacionSocio) {
         notificacionSocioService.save(notificacionSocio.notificaciones);
 
-        return "redirect:/notificacion/list";
+        return "redirect:list";
     }
 
     @RequestMapping("list")
-    public String findAll(@RequestParam(defaultValue = "1") Integer page, Model model, Integer idSocio) {
+    public String findAll(@RequestParam Integer idSocio, Model model) {
         List<NotificacionSocio> notificaciones = notificacionSocioService.getBySocio(idSocio);
         model.addAttribute("notificaciones", notificaciones);
 
