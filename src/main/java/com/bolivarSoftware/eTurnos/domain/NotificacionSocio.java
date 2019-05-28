@@ -1,6 +1,7 @@
 package com.bolivarSoftware.eTurnos.domain;
 
 import com.bolivarSoftware.eTurnos.domain.socio.Socio;
+import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.EstadoNotificacionSocio;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +26,10 @@ public class NotificacionSocio {
     @JoinColumn(name = "SOCIO_ID")
     private Socio socio;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "NOT_SOC_ESTADO")
+    private EstadoNotificacionSocio estado;
+
 
     public Integer getId() {
         return Id;
@@ -48,5 +53,13 @@ public class NotificacionSocio {
 
     public void setSocio(Socio socio) {
         this.socio = socio;
+    }
+
+    public EstadoNotificacionSocio getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoNotificacionSocio estado) {
+        this.estado = estado;
     }
 }

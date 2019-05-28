@@ -7,11 +7,10 @@
     <jsp:include page="../menu.jsp"/>
     <jsp:include page="../panel-usuario.jsp"/>
     <div class="content-wrapper">
-
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Socios <small> Todos</small>
+                Notificaciones del socio <small> Todas</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Socios</a></li>
@@ -25,19 +24,6 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
-                        <div class="box-header">
-
-                            <form action="<c:url value='/socio/buscar'/>">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" name="valor" value="${valor}" placeholder="Ingrese datos del socio a buscar ..">
-                                    <span class="input-group-btn">
-                                      <button type="submit" class="btn btn-info btn-flat">Buscar!</button>
-                                    </span>
-                                </div>
-                            </form>
-
-                        </div>
-                        <!-- /.box-header -->
                         <div class="box-body">
                             <table id="usuarios" class="table table-bordered table-hover">
                                 <thead>
@@ -47,19 +33,25 @@
                                     <th>Desde</th>
                                     <th>Hasta</th>
                                     <th>Socio</th>
+                                    <th>Estado</th>
                                     <th></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <c:forEach items="${notificaciones}" var="bo">
                                     <tr>
-                                        <td><a href="<c:url value='/socio/${bo.id}'/>">${bo.id}</a></td>
+                                        <td>${bo.id}</td>
                                         <td>${bo.notificacion.message}</td>
                                         <td>${bo.notificacion.desde}</td>
                                         <td>${bo.notificacion.hasta}</td>
                                         <td>${bo.socio.nombre} ${bo.socio.apellido}</td>
-                                        <td><span class="glyphicon glyphicon-remove"></span></td>
+                                        <td>${bo.estado}</td>
+                                        <td>
+                                            <a href="activar?id=${bo.id}"><span class="glyphicon glyphicon-ok" title="Activar notificacion"></span></a>
+                                            <a href="desactivar?id=${bo.id}"><span class="iconoActivar glyphicon glyphicon-remove" title="Desactivar notificacion"></span></a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -72,20 +64,6 @@
                 </div>
                 <!-- /.col -->
 
-                <div class="col-xs-12">
-                    <div class="col-xs-2">
-                        <a href="/turnos/socio/list?page=${page - 1}" class="btn btn-block btn-primary">Atras</a>
-                    </div>
-                    <div class="col-xs-2">
-                        <a href="/turnos/socio/list?page=${page + 1}" class="btn btn-block btn-primary">Siguiente</a>
-                    </div>
-                    <form action="<c:url value='/socio/exportarQR'/>">
-                        <div class="col-xs-2">
-                            <input type="hidden" value="${valor}" name="valor"/>
-                            <button type="submit" class="btn btn-block btn-primary">Exportar QR</button>
-                        </div>
-                    </form>
-                </div>
 
             </div>
             <!-- /.row -->

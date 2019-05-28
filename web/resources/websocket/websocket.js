@@ -167,18 +167,28 @@ $(function () {
 
 
 function agregarDatosDeSocio(turno){
+
     var table = $("#datosDelTurno");
     table.empty();
-    if(turno.cliente != null){
+    if(turno.cliente != null) {
+
         var cliente = turno.cliente;
         $('#datosDelTurno').append('<tr><th>N&uacute;mero:</th><td> ' + turno.numeroTicket + ' </td></tr>');
-        $('#datosDelTurno tr:last').after('<tr><th>Socio</th><td> ' + cliente.apellido + ' ' + cliente.nombre +' </td></tr>');
-        $('#datosDelTurno tr:last').after('<tr><th>Firma:</th><td> ' + cliente.firma + ' </td></tr>');
-        $('#datosDelTurno tr:last').after('<tr><th>Solicitado</th><td> ' + turno.fechaSolicitado + ' </td></tr>');
+
+        $('#datosDelTurno tr:last').after('<tr><th>Socio</th><td>' + cliente.nombre + ' ' + cliente.apellido + ' </td></tr>');
+
+            if(turno.cliente.notificacionesDelSocio.length > 0) {
+                $('#datosDelTurno tr:last').after('<tr><th colspan="2"><a href="../notificacionSocio/list?idSocio=' + cliente.id + '" target="_blank" type="button" class="btn btn-danger" style="display: block">Mostrar notificaciones</a></th></tr>');
+
+            }else{
+                $('#datosDelTurno tr:last').after('<tr><th>No tiene notificaciones</th><td></td></tr>');
+            }
+        }
+
+    else
+        {
+            $('#datosDelTurno').append('<tr><th>N&uacute;mero:</th><td> ' + turno.numeroTicket + ' </td></tr>');
+            $('#datosDelTurno tr:last').after('<tr><th>Solicitado:</th><td> ' + turno.fechaSolicitado + ' </td></tr>');
+        }
     }
-    
-    else {
-        $('#datosDelTurno').append('<tr><th>N&uacute;mero:</th><td> ' + turno.numeroTicket + ' </td></tr>');
-        $('#datosDelTurno tr:last').after('<tr><th>Solicitado:</th><td> ' + turno.fechaSolicitado + ' </td></tr>');
-    }
-}
+

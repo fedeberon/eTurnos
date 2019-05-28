@@ -17,11 +17,11 @@ public interface ITurnoService extends ICommonService<Turno, Long>{
 
     Turno obtenerProximoTurno();
 
+    Turno rellamarTurno(Long id);
+
     List<TurnoOrdenado> getTurnosOrdenados();
 
     void turnoAtendido(Long idTurno);
-
-    Turno rellamarTurno(Long idTurno);
 
     void ausentarTurno(Long idTurno);
 

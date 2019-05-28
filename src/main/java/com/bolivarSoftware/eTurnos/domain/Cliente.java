@@ -1,5 +1,7 @@
 package com.bolivarSoftware.eTurnos.domain;
 
+import com.bolivarSoftware.eTurnos.interfaces.Notificable;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,7 +9,7 @@ import java.util.Date;
 @Table(name = "SOCIO")
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( name = "TIPO")
-public abstract class Cliente {
+public abstract class Cliente implements Notificable {
 
     @Id
     @Column(name = "SOCIO_ID")

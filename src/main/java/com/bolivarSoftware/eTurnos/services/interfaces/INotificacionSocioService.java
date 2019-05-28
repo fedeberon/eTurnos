@@ -13,4 +13,8 @@ import java.util.List;
 public interface INotificacionSocioService {
     List<NotificacionSocio> findAllPageable(Integer page);
     NotificacionSocio save(NotificacionSocio notificacionSocio);
+    NotificacionSocio get(Integer id);
+    List<NotificacionSocio> save(List<NotificacionSocio> notificacionesSocios);
+    List<NotificacionSocio> getBySocio(Long idSocio);
+
 }

@@ -5,7 +5,6 @@ import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
-import org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression;
 import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

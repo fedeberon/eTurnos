@@ -5,6 +5,7 @@ import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
+import com.bolivarSoftware.eTurnos.domain.socio.Socio;
 import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,29 +56,20 @@ public class NotificacionSocioRepository implements INotificacionSocioRepository
     }
 
     @Override
-    public NotificacionSocio get(Integer id)
-    {
-        Session session = null;
-        try {
-            session = sessionFactory.openSession();
-            NotificacionSocio notificacionSocio = (NotificacionSocio) session.get(Notificacion.class, id);
-            return notificacionSocio;
-        }
-        catch (HibernateException e) {
+    public NotificacionSocio get(Integer id) {
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            return (NotificacionSocio) session.delegate().get(NotificacionSocio.class, id);
+        } catch (HibernateException e) {
+            LOGGER.error("No se pudo obtener el Socios.", e);
             throw e;
-        }
-        finally {
-            if ((session != null) && (session.isOpen())) {
-                session.close();
-            }
         }
     }
 
     @Override
-    public List<NotificacionSocio> getBySocio(Integer idSocio) {
+    public List<NotificacionSocio> getBySocio(Long idSocio) {
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
             Query query = session.delegate().createQuery("From  NotificacionSocio where socio.id = ? order by id desc");
-            query.setInteger(0 , idSocio);
+            query.setLong(0 , idSocio);
             return query.list();
         }
         catch (HibernateException e){

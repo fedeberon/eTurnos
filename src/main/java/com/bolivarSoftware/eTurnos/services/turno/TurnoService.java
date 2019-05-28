@@ -3,12 +3,13 @@ package com.bolivarSoftware.eTurnos.services.turno;
 import com.bolivarSoftware.eTurnos.beans.TurnoView;
 import com.bolivarSoftware.eTurnos.dao.interfaces.ITurnoRepository;
 import com.bolivarSoftware.eTurnos.domain.*;
+import com.bolivarSoftware.eTurnos.services.interfaces.INotificacionSocioService;
 import com.bolivarSoftware.eTurnos.services.interfaces.IPuestoDeAtencionService;
 import com.bolivarSoftware.eTurnos.services.interfaces.ITurnoService;
 import com.bolivarSoftware.eTurnos.services.interfaces.IUsuarioService;
 import com.bolivarSoftware.eTurnos.utils.UtilDate;
 import com.bolivarSoftware.eTurnos.websocket.IWebSocketService;
-import org.hibernate.cfg.NotYetImplementedException;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,10 @@ public class TurnoService implements ITurnoService {
 
     @Autowired
     private IPuestoDeAtencionService puestoDeAtencionService;
+
+
+    @Autowired
+    private INotificacionSocioService notificacionSocioService;
 
     @Override
     public Turno get(Long id) {
@@ -78,16 +83,22 @@ public class TurnoService implements ITurnoService {
         this.save(turno);
 
         webSocketService.llamarProximoTurno(new TurnoCartel(turno));
-
+        setNotificacionesBy(turno.getCliente());
         return turno;
     }
+
+    public void setNotificacionesBy(Cliente cliente){
+        if(Objects.isNull(cliente)) return;
+        List<NotificacionSocio> notificacionSocios = notificacionSocioService.getBySocio(cliente.getId());
+        cliente.setNotificacionesDelSocio(notificacionSocios);
+    }
+
 
     @Override
     public Turno rellamarTurno(Long id) {
         Turno turno = this.get(id);
         Integer rellamadas = turno.getRellamados() != null  ? turno.getRellamados() + 1 : 1;
         turno.setRellamados(rellamadas);
-
         webSocketService.llamarProximoTurno(new TurnoCartel(turno));
         this.save(turno);
 

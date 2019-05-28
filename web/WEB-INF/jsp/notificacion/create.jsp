@@ -75,7 +75,7 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="desde">Desde:</label>
+                                        <h4 for="desde"><span class="label label-primary">Desde</span></h4>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -87,7 +87,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="hasta">Hasta:</label>
+                                        <h4 for="hasta"><span class="label label-primary">Hasta</span></h4>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -99,8 +99,8 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <label for="message">Mensaje</label>
-                                        <textarea name="message" class="form-control" maxlength="255" placeholder="Ingrese el mensaje de la notificacion" rows="3"></textarea>
+                                        <h4 for="message"><span class="label label-primary">Mensaje</span></h4>
+                                        <textarea name="message" class="form-control" maxlength="255" placeholder="Ingrese el mensaje de la notificacion" rows="3" required></textarea>
                                     </div>
                                 </div>
                             </div>

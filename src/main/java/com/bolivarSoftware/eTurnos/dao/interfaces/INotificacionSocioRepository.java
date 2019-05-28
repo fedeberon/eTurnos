@@ -19,5 +19,5 @@ public interface INotificacionSocioRepository {
 
     NotificacionSocio get(Integer id);
 
-    List<NotificacionSocio> getBySocio(Integer idSocio);
+    List<NotificacionSocio> getBySocio(Long idSocio);
 }

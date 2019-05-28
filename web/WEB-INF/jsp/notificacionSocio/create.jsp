@@ -6,9 +6,22 @@
 <head>
 
     <style>
-       .ui-autocomplete-loading {
+        .ui-autocomplete-loading {
             background: white url('/resources/dist/img/giphy.gif') right center no-repeat;
         }
+
+        .itemSocioANotificar {
+            background-color: #E5E5E5;
+            border-radius: 10px;
+            border-color: #367fa9;
+            text-transform: capitalize;
+            color: #000000;
+            padding: 4px;
+            margin: 4px;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
     </style>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -21,55 +34,72 @@
                 var inputSocio = $('<input>',{
                     type:'hidden',
                     name: 'notificaciones[' + indice  + '].socio.id',
-                    value: id
+                    value: id,
+                    class: 'socio-' + indice
                 });
 
                 var inputNotificacion = $('<input>',{
                     type:'hidden',
                     name: 'notificaciones[' + indice  + '].notificacion.id',
-                    value: ${notificacion.id}
+                    value: ${notificacion.id},
+                    class:'socio-' + indice,
                 });
 
-                $( "<div>" ).text( message ).prependTo( "#log" );
+                $( "<label id='labelSocioANotificar' class='itemSocioANotificar socio-)'>" ).text( message ).prependTo( "#log" );
                 $( "#log" ).scrollTop( 0 );
 
                 inputSocio.prependTo("#formSocios");
                 inputNotificacion.prependTo("#formSocios");
-
                 indice++;
+
+                $("#log").on('click', 'label', indice, function () {
+
+                    $(this).remove();
+                    var clase = $(this).attr('class' + indice);
+                    alert(clase);
+                });
             }
 
-    $( "#socios" ).autocomplete({
-        source: function( request, response ) {
-            $.ajax( {
-            url: "/turnos/restSocio/list",
-            dataType: "json",
-            data: {
-            term: request.term
-            },
-            success: function(data){
-            var re = $.ui.autocomplete.escapeRegex(request.term);
-            var matcher = new RegExp("^" + re, "i");
-            if(data.length == 0) return response(["No matching cities found for " + request.term]);
-                response($.grep(($.map(data, function (v, i) {
-                    return {
-                        value: v.nombre,
-                        label: v.nombre,
-                        dni: v.dni,
-                        apellido: v.apellido,
-                        id: v.id
-                    };
-                })), function (item) {
-                    return matcher.test(item.label);
-                }))
-            }});
-    },
-    minLength: 2,
-    select: function( event, ui ) {
-     log(ui.item.id,  ui.item.label + "  " + ui.item.apellido);
-    }
-    } );
-    } );
+
+
+            $( "#socios" ).autocomplete({
+                source: function( request, response ) {
+                    $.ajax( {
+                        url: "/turnos/restSocio/list",
+                        dataType: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function(data){
+                            var re = $.ui.autocomplete.escapeRegex(request.term);
+                            var matcher = new RegExp("^" + re, "i");
+                            if(data.length == 0) return response(["No matching cities found for " + request.term]);
+                            response($.grep(($.map(data, function (v, i) {
+                                return {
+                                    value: v.nombre,
+                                    label: v.nombre,
+                                    cuit: v.cuit,
+                                    apellido: v.apellido,
+                                    id: v.id
+                                };
+                            })), function (item) {
+                                return matcher.test(item.label);
+                            }))
+                        }});
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+                    log(ui.item.id,  ui.item.label + "  " + ui.item.apellido + ui.item.cuit);
+                }
+            } );
+        } );
+        $(document).on('ready', function (){
+            $.getJSON("/turnos/restSocio/list", function(data) {
+                $.each(data, function(key, value) {
+                    $("#firmaNotificacion").append('<option name="' + value.id + '">' + value.firma + '</option>');
+                }); // close each()
+            }); // close getJSON()
+        });
     </script>
 
 </head>
@@ -82,41 +112,57 @@
 
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Notificaciones
-                <small>Crear nueva notificacion</small>
-            </h1>
+            <h1> Notificaciones <small>Crear nueva notificacion</small></h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Notificacion-Socio</a></li>
-                <li class="active">Añadir socio a una notificacion</li>
+                <li class="active">A&ntilde;adir socio a una notificacion</li>
             </ol>
+            <br>
+            <br>
         </section>
 
         <!-- Main content -->
         <section class="content">
 
-            <form:form modelAttribute="notificionesSocios" action="save" method="post" id="formSocios">
-
-                <div class="ui-widget">
-                    <label for="socios">Socios: </label>
-                    <input id="socios">
+            <form:form modelAttribute="notificacionSocio" action="save" method="post" id="formSocios" data-toggle="validator" role="form" path="notificaciones">
+                <div class="row">
+                    <div class="col-md-10 input-group ">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <label for="socios" class="dropdown-menu"></label>
+                        <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
+                    </div>
+                    <c:if test='${empty notificacion}'>
+                        <%--<form:errors cssClass="text-danger bg-danger" path="notificaciones"/>--%>
+                        <div class="container">
+                            <p class="text-danger">Socio no encontrado</p>
+                        </div>
+                    </c:if>
                 </div>
+                <br>
+                <br>
 
-                <div class="ui-widget" style="margin-top:2em; font-family:Arial">
-                    Socios a notificar:
-                    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-                </div>
-
-
-                <div class="ui-widget">
-                    <label for="socios">Mensaje: ${notificacion.message}</label>
+                <div class="row">
+                    <div class="col-md-10 ui-widget">
+                        <h4><span class="label label-primary">Socios a notificar</span></h4>
+                        <div id="log" style="height: 150px; overflow: auto;" class="ui-widget-content"></div>
+                    </div>
                 </div>
 
                 <br/>
 
-                <div class="box-footer">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h4><span class="label label-primary">Mensaje</span></h4>
+                        <p class="itemSocioANotificar" >${notificacion.message}</p>
+                    </div>
+                </div>
+
+                <br/>
+
+                <div class="">
                     <button type="submit" class="btn btn-primary" action="save"  method="post">Guardar</button>
                 </div>
+
 
             </form:form>
 
@@ -165,7 +211,6 @@
 
 <!-- style jquery-ui -->
 <link rel="stylesheet" type='text/css' href="<c:url value='https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css'/>"/>
-
-
+y
 </body>
 </html>

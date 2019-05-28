@@ -9,6 +9,7 @@ public class TurnoCartel {
     private String puesto;
     private String cliente;
 
+
     public TurnoCartel(Turno turno) {
         this.numeroTicket = turno.getNumeroTicket();
         this.puesto = turno.getPuesto()!= null ? turno.getPuesto().getNumero().toString() : "S/N";
@@ -35,4 +36,5 @@ public class TurnoCartel {
     public void setCliente(String cliente) {
         this.cliente = cliente;
     }
+
 }
