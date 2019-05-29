@@ -45,7 +45,7 @@
                     class:'socio-' + indice,
                 });
 
-                $( "<label id='labelSocioANotificar' class='itemSocioANotificar socio-)'>" ).text( message ).prependTo( "#log" );
+                $( "<label id='labelSocioANotificar' class='itemSocioANotificar socio-" + indice + "'>" ).text( message ).prependTo( "#log" );
                 $( "#log" ).scrollTop( 0 );
 
                 inputSocio.prependTo("#formSocios");
@@ -55,8 +55,9 @@
                 $("#log").on('click', 'label', indice, function () {
 
                     $(this).remove();
-                    var clase = $(this).attr('class' + indice);
-                    alert(clase);
+                    var clase = $(this).attr('class');
+                    clase = clase.substr(20, clase.length );
+                    $('.'+ clase).remove();
                 });
             }
 
@@ -77,19 +78,20 @@
                             response($.grep(($.map(data, function (v, i) {
                                 return {
                                     value: v.nombre,
-                                    label: v.nombre,
-                                    cuit: v.cuit,
                                     apellido: v.apellido,
-                                    id: v.id
+                                    cuit: v.cuit,
+                                    id: v.id,
+                                    label: v.nombre + ' ' + v.apellido + ' - ' + v.cuit,
                                 };
                             })), function (item) {
                                 return matcher.test(item.label);
+
                             }))
                         }});
                 },
                 minLength: 2,
                 select: function( event, ui ) {
-                    log(ui.item.id,  ui.item.label + "  " + ui.item.apellido + ui.item.cuit);
+                    log(ui.item.id,  ui.item.label);
                 }
             } );
         } );

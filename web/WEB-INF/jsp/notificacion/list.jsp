@@ -47,7 +47,7 @@
                                     <th>Mensaje</th>
                                     <th>Desde</th>
                                     <th>Hasta</th>
-                                    <th>Socios Notificados</th>
+                                    <th>Socios notificados</th>
                                 </tr>
                                 </thead>
                                 <tbody>
