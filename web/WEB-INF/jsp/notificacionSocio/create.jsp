@@ -4,7 +4,7 @@
 <html>
 <jsp:include page="../header.jsp"/>
 <head>
-
+    <link rel="stylesheet" type="text/css" href="../../../resources/notificacionSocio/create.css">
     <style>
         .ui-autocomplete-loading {
             background: white url('/resources/dist/img/giphy.gif') right center no-repeat;
@@ -19,7 +19,19 @@
             padding: 4px;
             margin: 4px;
             font-size: 14px;
+            height: 50px;
             font-weight: normal;
+        }
+        .my-custom-scrollbar {
+            position: relative;
+            height: 300px;
+            overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+            display: block;
+        }
+        .column{
+            margin-top: 15px;
         }
 
     </style>
@@ -119,8 +131,6 @@
                 <li><a href="#"><i class="fa fa-dashboard"></i> Notificacion-Socio</a></li>
                 <li class="active">A&ntilde;adir socio a una notificacion</li>
             </ol>
-            <br>
-            <br>
         </section>
 
         <!-- Main content -->
@@ -128,44 +138,63 @@
 
             <form:form modelAttribute="notificacionSocio" action="save" method="post" id="formSocios" data-toggle="validator" role="form" path="notificaciones">
                 <div class="row">
-                    <div class="col-md-10 input-group ">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <label for="socios" class="dropdown-menu"></label>
-                        <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
-                    </div>
-                    <c:if test='${empty notificacion}'>
-                        <%--<form:errors cssClass="text-danger bg-danger" path="notificaciones"/>--%>
-                        <div class="container">
-                            <p class="text-danger">Socio no encontrado</p>
+                    <div class="box">
+                        <div class="box box-body">
+
+                            <div class="col-md-12 column">
+                                <label for="socios" class="dropdown-menu"></label>
+                                <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
+                            </div>
+                            <div class="col-md-6 column">
+                                <h4><span class="label label-primary">Socios a notificar</span></h4>
+                                <div id="log" style="height: 280px; overflow: auto;" class="ui-widget-content"></div>
+                            </div>
+
+
+                            <div  class="col-sm-6 column">
+                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                    <table class="table table-striped small">
+                                        <thead class="bg-primary">
+                                        <tr>
+                                            <th>Codigo interno</th>
+                                            <th>Socio</th>
+                                            <th>Estado</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                        </thead>
+                                        <c:forEach items="${sociosNotificados}" var="bo">
+                                            <tr>
+                                                <td> ${bo.id} </td>
+                                                <td> ${bo.socio}</td>
+                                                <td> ${bo.estado}</td>
+                                                <td class="text-center"><a href="delete?id=${bo.id}"><span class="glyphicon glyphicon-trash"></span></a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <c:if test='${empty notificacion}'>
+                                <%--<form:errors cssClass="text-danger bg-danger" path="notificaciones"/>--%>
+                                <div class="container">
+                                    <p class="text-danger">Socio no encontrado</p>
+                                </div>
+                            </c:if>
+
+
+                            <div class="col-md-12 column">
+                                <h4><span class="label label-primary">Mensaje</span></h4>
+                                <p class="itemSocioANotificar" >${notificacion.message}</p>
+                            </div>
+
+
+                            <div class="col-md-6 column">
+                            <button type="submit" class="btn btn-primary" action="save"  method="post">Guardar</button>
+                            </div>
                         </div>
-                    </c:if>
-                </div>
-                <br>
-                <br>
-
-                <div class="row">
-                    <div class="col-md-10 ui-widget">
-                        <h4><span class="label label-primary">Socios a notificar</span></h4>
-                        <div id="log" style="height: 150px; overflow: auto;" class="ui-widget-content"></div>
                     </div>
                 </div>
-
-                <br/>
-
-                <div class="row">
-                    <div class="col-md-10">
-                        <h4><span class="label label-primary">Mensaje</span></h4>
-                        <p class="itemSocioANotificar" >${notificacion.message}</p>
-                    </div>
-                </div>
-
-                <br/>
-
-                <div class="">
-                    <button type="submit" class="btn btn-primary" action="save"  method="post">Guardar</button>
-                </div>
-
-
             </form:form>
 
         </section>

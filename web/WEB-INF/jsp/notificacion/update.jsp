@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <jsp:include page="../header.jsp"/>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <jsp:include page="../menu.jsp"/>
@@ -23,12 +24,15 @@
 
         <!-- Main content -->
         <section class="content">
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="box box-primary">
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form:form modelAttribute="notificacion" action="/turnos/notificacion/save"  method="post">
+                        <form:form modelAttribute="notificacion" action="/turnos/notificacion/save" commandName="notificacion" method="post">
+                             <form:hidden path="id" />
+
                             <div class="box-body">
                                 <div class="row">
                                     <div class="form-group col-md-6">
@@ -37,7 +41,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input name="desde" type="text" class="form-control date">
+                                            <input name="desde" type="text" class="form-control date" value="<fmt:formatDate value="${notificacion.desde}" pattern="dd-MM-yyyy HH:mm"/>">
                                         </div>
                                     </div>
                                 </div>
@@ -49,15 +53,14 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input name="hasta" type="text" class="form-control date">
+                                            <input name="hasta" type="text" class="form-control date" value="<fmt:formatDate value="${notificacion.hasta}" pattern="dd/MM/yyyy HH:mm"/>">
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <h4 for="message"><span class="label label-primary">Mensaje</span></h4>
-                                        <textarea name="message" class="form-control" maxlength="255" placeholder="Ingrese el mensaje de la notificacion" rows="3" required></textarea>
+                                        <textarea name="message" class="form-control" maxlength="255" placeholder="Ingrese el mensaje de la notificacion" rows="3" required>${notificacion.message}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -70,29 +73,30 @@
                 </div>
             </div>
         </section>
+
         <%--<br /><br />--%>
         <%--<div class="ui-widget">--%>
-            <%--<label for="birds">Birds: </label>--%>
-            <%--<input id="birds">--%>
+        <%--<label for="birds">Birds: </label>--%>
+        <%--<input id="birds">--%>
         <%--</div>--%>
 
         <%--<div class="ui-widget" style="margin-top:2em; font-family:Arial">--%>
-            <%--Result:--%>
-            <%--<div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>--%>
+        <%--Result:--%>
+        <%--<div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>--%>
         <%--</div>--%>
 
-            <!-- /.box -->
+        <!-- /.box -->
     </div>
-        <!-- /.content -->
+    <!-- /.content -->
 </div>
-    <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 
 
-    <jsp:include page="../footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 
-    <jsp:include page="../menu-derecho.jsp"/>
+<jsp:include page="../menu-derecho.jsp"/>
 
-    <div class="control-sidebar-bg"></div>
+<div class="control-sidebar-bg"></div>
 </div>
 
 <!-- jQuery 2.2.0 -->

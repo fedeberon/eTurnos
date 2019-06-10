@@ -1,6 +1,5 @@
 package com.bolivarSoftware.eTurnos.services.interfaces;
 
-import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +15,4 @@ public interface INotificacionSocioService {
     NotificacionSocio get(Integer id);
     List<NotificacionSocio> save(List<NotificacionSocio> notificacionesSocios);
     List<NotificacionSocio> getBySocio(Long idSocio);
-
 }

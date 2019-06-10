@@ -5,13 +5,11 @@ import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
-import com.bolivarSoftware.eTurnos.domain.socio.Socio;
 import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 /**
@@ -79,6 +77,19 @@ public class NotificacionSocioRepository implements INotificacionSocioRepository
     }
 
     @Override
+    public List<NotificacionSocio> getByNotificacion(Notificacion notificacion) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("From  NotificacionSocio where notificacion = ? order by id desc");
+            query.setParameter(0 , notificacion);
+            return query.list();
+        }
+        catch (HibernateException e){
+            LOGGER.error("No se pudo obtener la lista de Notificaciones por notificacion.",  e);
+            throw e;
+        }
+    }
+
+    @Override
     public List<NotificacionSocio> save(List<NotificacionSocio> notificacionesSocios) {
         Transaction tx = null;
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
@@ -94,6 +105,4 @@ public class NotificacionSocioRepository implements INotificacionSocioRepository
             throw e;
         }
     }
-
-
 }

@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML>
 <html>
 <jsp:include page="../header.jsp"/>
@@ -26,39 +27,28 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
-                        <%--<div class="box-header">--%>
-
-                            <%--<form action="<c:url value='/socio/buscar'/>">--%>
-                                <%--<div class="input-group input-group-sm">--%>
-                                    <%--<input type="text" class="form-control" name="valor" value="${valor}" placeholder="Ingrese datos del socio a buscar ..">--%>
-                                    <%--<span class="input-group-btn">--%>
-                                      <%--<button type="submit" class="btn btn-info btn-flat">Buscar!</button>--%>
-                                    <%--</span>--%>
-                                <%--</div>--%>
-                            <%--</form>--%>
-
-                        <%--</div>--%>
-                        <!-- /.box-header -->
                         <div class="box-body">
                             <table id="notificacion" class="table table-bordered table-hover">
-                                <thead>
+                                <thead class="thead-dark">
                                 <tr>
                                     <th>Codigo</th>
                                     <th>Mensaje</th>
                                     <th>Desde</th>
                                     <th>Hasta</th>
-                                    <th>Socios notificados</th>
+                                    <th>Agregar socio a notificar</th>
+                                    <th>Editar notificaci&oacute;n</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <c:forEach items="${notificacion}" var="bo" >
                                     <tr>
-                                        <td class="col-md-1"><a href="<c:url value='/notificacion/idNotificacion?id=${bo.id}'/>">${bo.id}</a></td>
-                                        <td class="col-md-6">${bo.message}</td>
-                                        <td class="col-md-1">${bo.desde}</td>
-                                        <td class="col-md-2">${bo.hasta}</td>
-                                        <td class="col-md-2"> <a class="btn btn-primary" href="<c:url value='/notificacionSocio/create?id=${bo.id}'/>"/>Agregar Socios</td>
+                                        <td class="col-md-1">${bo.id}</td>
+                                        <td class="col-md-5">${bo.message}</td>
+                                        <td class="col-md-2"><fmt:formatDate value="${bo.desde}" pattern="dd-MM-yyyy"/></td>
+                                        <td class="col-md-2"><fmt:formatDate value="${bo.hasta}" pattern="dd-MM-yyyy"/></td>
+                                        <td class="col-md-1"> <a class="btn btn-primary" href="<c:url value='/notificacionSocio/create?id=${bo.id}'/>"/>Agregar Socios</td>
+                                        <td class="col-md-1"> <a class="btn btn-primary" href="<c:url value='/notificacion/update?id=${bo.id}'/>"/>Editar</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -77,12 +67,6 @@
                     <div class="col-xs-2">
                         <a href="/turnos/notificacion/list?page=${page + 1}" class="btn btn-block btn-primary">Siguiente</a>
                     </div>
-                    <%--<form action="<c:url value='/socio/exportarQR'/>">--%>
-                        <%--<div class="col-xs-2">--%>
-                            <%--<input type="hidden" value="${valor}" name="valor"/>--%>
-                            <%--<button type="submit" class="btn btn-block btn-primary">Exportar QR</button>--%>
-                        <%--</div>--%>
-                    <%--</form>--%>
                 </div>
 
             </div>

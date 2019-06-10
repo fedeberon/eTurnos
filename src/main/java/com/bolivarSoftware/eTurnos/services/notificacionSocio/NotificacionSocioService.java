@@ -1,6 +1,7 @@
 package com.bolivarSoftware.eTurnos.services.notificacionSocio;
 
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
+import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 import com.bolivarSoftware.eTurnos.services.interfaces.INotificacionSocioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,9 @@ public class NotificacionSocioService implements INotificacionSocioService{
     @Override
     public List<NotificacionSocio> getBySocio(Long idSocio) {
         return dao.getBySocio(idSocio);
+    }
+
+    public List<NotificacionSocio> getByNotificacion(Notificacion notificacion) {
+        return dao.getByNotificacion(notificacion);
     }
 }

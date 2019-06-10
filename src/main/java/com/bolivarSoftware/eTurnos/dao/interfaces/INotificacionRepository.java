@@ -2,8 +2,6 @@ package com.bolivarSoftware.eTurnos.dao.interfaces;
 
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
-
-
 import java.util.List;
 
 /**

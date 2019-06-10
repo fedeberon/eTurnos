@@ -166,7 +166,7 @@ $(function () {
 });
 
 
-function agregarDatosDeSocio(turno){
+function agregarDatosDeSocio(turno, notificacionSocio){
 
     var table = $("#datosDelTurno");
     table.empty();

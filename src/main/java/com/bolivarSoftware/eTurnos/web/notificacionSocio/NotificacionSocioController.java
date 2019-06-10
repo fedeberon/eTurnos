@@ -1,7 +1,6 @@
 package com.bolivarSoftware.eTurnos.web.notificacionSocio;
 
 import com.bolivarSoftware.eTurnos.beans.NotificacionesSocios;
-import com.bolivarSoftware.eTurnos.beans.RedirectAuthentication;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
 import com.bolivarSoftware.eTurnos.services.notificacion.NotificacionService;
@@ -12,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -79,7 +76,18 @@ public class NotificacionSocioController {
     public String create(@RequestParam Integer id, Model model) {
         model.addAttribute("id", id);
         Notificacion notificacion = notificacionService.get(id);
+
+        List<NotificacionSocio> sociosNotificados = notificacionSocioService.getByNotificacion(notificacion);
+
+        model.addAttribute("sociosNotificados", sociosNotificados);
         model.addAttribute("notificacion", notificacion);
+
+        return "notificacionSocio/create";
+    }
+
+    @RequestMapping("show")
+    public String show(@RequestParam Integer id,  Model model){
+        model.addAttribute("notificacionSocio", notificacionSocioService.get(id));
 
         return "notificacionSocio/create";
     }

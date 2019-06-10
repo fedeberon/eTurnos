@@ -1,8 +1,6 @@
 package com.bolivarSoftware.eTurnos.dao.interfaces;
-
+import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,4 +18,6 @@ public interface INotificacionSocioRepository {
     NotificacionSocio get(Integer id);
 
     List<NotificacionSocio> getBySocio(Long idSocio);
+
+    List<NotificacionSocio> getByNotificacion(Notificacion notificacion);
 }

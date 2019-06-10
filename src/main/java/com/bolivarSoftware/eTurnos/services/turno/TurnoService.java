@@ -8,6 +8,7 @@ import com.bolivarSoftware.eTurnos.services.interfaces.IPuestoDeAtencionService;
 import com.bolivarSoftware.eTurnos.services.interfaces.ITurnoService;
 import com.bolivarSoftware.eTurnos.services.interfaces.IUsuarioService;
 import com.bolivarSoftware.eTurnos.utils.UtilDate;
+import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.EstadoNotificacionSocio;
 import com.bolivarSoftware.eTurnos.websocket.IWebSocketService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,6 @@ public class TurnoService implements ITurnoService {
 
     @Autowired
     private IPuestoDeAtencionService puestoDeAtencionService;
-
 
     @Autowired
     private INotificacionSocioService notificacionSocioService;
@@ -81,15 +81,16 @@ public class TurnoService implements ITurnoService {
         turno.setPuesto(puestoDeAtencion);
         turno.setFechaLlamado(new Date());
         this.save(turno);
-
         webSocketService.llamarProximoTurno(new TurnoCartel(turno));
         setNotificacionesBy(turno.getCliente());
+
         return turno;
     }
 
     public void setNotificacionesBy(Cliente cliente){
         if(Objects.isNull(cliente)) return;
         List<NotificacionSocio> notificacionSocios = notificacionSocioService.getBySocio(cliente.getId());
+
         cliente.setNotificacionesDelSocio(notificacionSocios);
     }
 
