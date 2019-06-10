@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0feaab97-47b4-461d-9c1f-0bdde6d6c97e" name="Default" comment="" />
-    <list id="9f1d7a2a-68e6-4cc9-b3d0-c61c53a78918" name="New changelist" comment="">
+    <list default="true" id="0feaab97-47b4-461d-9c1f-0bdde6d6c97e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bolivarSoftware/eTurnos/domain/TurnoCartel.java" afterPath="$PROJECT_DIR$/src/main/java/com/bolivarSoftware/eTurnos/domain/TurnoCartel.java" />
     </list>
@@ -43,8 +42,8 @@
       <file leaf-file-name="create.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/notificacionSocio/create.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+            <state relative-caret-position="238">
+              <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
               <folding>
                 <element signature="n#c:if#0;n#form:form#0;n#jsp:root#0;n#!!top" expanded="false" />
               </folding>
@@ -833,7 +832,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0feaab97-47b4-461d-9c1f-0bdde6d6c97e" name="Default" comment="" />
-      <changelist id="9f1d7a2a-68e6-4cc9-b3d0-c61c53a78918" name="New changelist" comment="" />
+      <changelist id="" name="New changelist" comment="" />
       <created>1557325611855</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -884,7 +883,7 @@
       <workItem from="1559847188351" duration="6945000" />
       <workItem from="1559912344546" duration="10429000" />
       <workItem from="1559935820575" duration="6872000" />
-      <workItem from="1560191043094" duration="3482000" />
+      <workItem from="1560191043094" duration="3498000" />
     </task>
     <task id="LOCAL-00001" summary="Se crea lista y funcionalidad para cargar notificaciones a socios">
       <created>1557326971178</created>
@@ -935,11 +934,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560194605731</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="New changelist">
+      <created>1560194664084</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560194664084</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="291600000" />
+    <option name="totallyTimeSpent" value="291616000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -952,7 +958,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -963,7 +969,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.49394855" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.49394855" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45171848" sideWeight="0.33207262" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5286416" sideWeight="0.5590015" order="12" side_tool="false" content_ui="tabs" />
@@ -1048,6 +1054,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Se crea lista y funcionalidad para cargar notificaciones a socios" />
     <MESSAGE value="Se eliminan imports en desuso" />
     <MESSAGE value="Se agrega funcionalidad para crear notificaciones a socios" />
@@ -1055,7 +1063,8 @@
     <MESSAGE value="Se agrega funcionalidad para agregar socios a notificaciones" />
     <MESSAGE value="Se agrega funcionalidad para dar de baja un cliente a notificar" />
     <MESSAGE value="Se agrego una lista de socios asociados a las notificaciones, y agrego la funcionalidad para poder editar una notificacion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se agrego una lista de socios asociados a las notificaciones, y agrego la funcionalidad para poder editar una notificacion" />
+    <MESSAGE value="New changelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="New changelist" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -1466,8 +1475,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/notificacionSocio/create.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        <state relative-caret-position="238">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
           <folding>
             <element signature="n#c:if#0;n#form:form#0;n#jsp:root#0;n#!!top" expanded="false" />
           </folding>
