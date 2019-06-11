@@ -48,7 +48,7 @@
                                     <th>CUIT</th>
                                     <th>eMail</th>
                                     <th>Firma</th>
-                                    <th>Empres</th>
+                                    <th>Empresa</th>
                                     <th></th>
                                 </tr>
                                 </thead>

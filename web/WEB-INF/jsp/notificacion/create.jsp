@@ -57,7 +57,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <h4 for="message"><span class="label label-primary">Mensaje</span></h4>
-                                        <textarea name="message" class="form-control" maxlength="255" placeholder="Ingrese el mensaje de la notificacion" rows="3" required></textarea>
+                                        <textarea name="message" class="form-control" maxlength="255" placeholder="Ingrese el message de la notificacion" rows="3" required></textarea>
                                     </div>
                                 </div>
                             </div>
