@@ -18,11 +18,11 @@ public class NotificacionSocio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "ID_NOT")
     private Notificacion notificacion;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "SOCIO_ID")
     private Socio socio;
 

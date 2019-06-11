@@ -5,11 +5,15 @@ import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
-import org.hibernate.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
