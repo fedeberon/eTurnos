@@ -224,3 +224,5 @@ TSWLatexianTemp*
 /auto/*
 
 */target/**
+
+.DS_Store
