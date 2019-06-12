@@ -159,6 +159,7 @@
                                             <th>Codigo interno</th>
                                             <th>Socio</th>
                                             <th>Estado</th>
+                                            <th>Notificaciones</th>
                                             <th>Eliminar</th>
                                         </tr>
                                         </thead>
@@ -167,7 +168,13 @@
                                                 <td> ${bo.id} </td>
                                                 <td> ${bo.socio}</td>
                                                 <td> ${bo.estado}</td>
-                                                <td class="text-center"><a href="delete?id=${bo.id}"><span class="glyphicon glyphicon-trash"></span></a>
+
+                                                <td class="text-center">
+                                                    <a href="<c:url value='/notificacionSocio/list?idSocio=${bo.socio.id}'/>"target="_blank">
+                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center"><a href="/notificacionSocio/delete?id=${bo.id}"><span class="glyphicon glyphicon-trash"></span></a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
