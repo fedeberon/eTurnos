@@ -1,16 +1,13 @@
 package com.bolivarSoftware.eTurnos.domainSoccam;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by federicoberon on 12/06/2019.
  */
 
 @Entity
-@Table(name = "socioRubro")
+@Table(name = "sociosRubro")
 public class Rubro {
 
     @Id

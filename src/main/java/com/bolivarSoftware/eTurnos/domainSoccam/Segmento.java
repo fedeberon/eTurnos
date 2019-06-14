@@ -14,11 +14,11 @@ public class Segmento {
     @Column(name = "sociosSegmento_id")
     private Long id;
 
-    @Column(name = "sociosSegmentos_nombre")
+    @Column(name = "sociosSegmento_nombre")
     private String nombre;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sociosSegmento_rubro")
+    @JoinColumn(name = "sociosRubro_id")
     private List<Rubro> rubros;
 
     public Long getId() {

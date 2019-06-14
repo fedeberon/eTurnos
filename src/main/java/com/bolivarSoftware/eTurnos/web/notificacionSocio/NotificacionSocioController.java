@@ -3,8 +3,10 @@ package com.bolivarSoftware.eTurnos.web.notificacionSocio;
 import com.bolivarSoftware.eTurnos.beans.NotificacionesSocios;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
+import com.bolivarSoftware.eTurnos.domainSoccam.Segmento;
 import com.bolivarSoftware.eTurnos.services.notificacion.NotificacionService;
 import com.bolivarSoftware.eTurnos.services.notificacionSocio.NotificacionSocioService;
+import com.bolivarSoftware.eTurnos.services.soccam.interfaces.ISegmentoService;
 import com.bolivarSoftware.eTurnos.validator.NotificacionValidator;
 import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.EstadoNotificacionSocio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class NotificacionSocioController {
 
     @Autowired
     private NotificacionValidator notificacionValidator;
+
+    @Autowired
+    private ISegmentoService segmentoService;
 
     @RequestMapping("save")
     public String save(@ModelAttribute NotificacionesSocios notificacionSocio, BindingResult result, Model model) {
@@ -95,6 +100,13 @@ public class NotificacionSocioController {
     public NotificacionesSocios getNotificionesSocios(){
         return new NotificacionesSocios();
     }
+
+    @ModelAttribute("segmentos")
+    public List<Segmento> getSegmentos(){
+        return segmentoService.findAll();
+    }
+
+
 
 }
 

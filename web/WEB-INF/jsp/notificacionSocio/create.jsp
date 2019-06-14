@@ -141,10 +141,24 @@
                     <div class="box">
                         <div class="box box-body">
 
-                            <div class="col-md-12 column">
+                            <div class="col-md-6 column">
                                 <label for="socios" class="dropdown-menu"></label>
                                 <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
                             </div>
+
+
+                            <div class="col-md-6 column">
+                                <label>Segmentos</label>
+                                <select>
+                                    <c:forEach items="${segmentos}" var="bo">
+                                        <option>${bo.nombre}</option>
+                                    </c:forEach>
+
+                                </select>
+
+                            </div>
+
+
                             <div class="col-md-6 column">
                                 <h4><span class="label label-primary">Socios a notificar</span></h4>
                                 <div id="log" style="height: 280px; overflow: auto;" class="ui-widget-content"></div>
