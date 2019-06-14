@@ -3,7 +3,9 @@ package com.bolivarSoftware.eTurnos.services.notificacionSocio;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
+import com.bolivarSoftware.eTurnos.domainSoccam.Rubro;
 import com.bolivarSoftware.eTurnos.services.interfaces.INotificacionSocioService;
+import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.Grupo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +49,11 @@ public class NotificacionSocioService implements INotificacionSocioService{
 
     public List<NotificacionSocio> getByNotificacion(Notificacion notificacion) {
         return dao.getByNotificacion(notificacion);
+    }
+
+    public void grupoRubro(List<NotificacionSocio> notificacionSocios){
+        if(notificacionSocios.get(0).getGrupo().equals(Grupo.SOCIOS_POR_RUBRO)){
+
+        }
     }
 }

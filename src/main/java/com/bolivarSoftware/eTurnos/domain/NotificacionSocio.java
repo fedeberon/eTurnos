@@ -2,6 +2,7 @@ package com.bolivarSoftware.eTurnos.domain;
 
 import com.bolivarSoftware.eTurnos.domain.socio.Socio;
 import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.EstadoNotificacionSocio;
+import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.Grupo;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,6 +31,7 @@ public class NotificacionSocio {
     @Column(name = "NOT_SOC_ESTADO")
     private EstadoNotificacionSocio estado = EstadoNotificacionSocio.ACTIVO;
 
+    private Grupo grupo = Grupo.SOCIOS_ASIGNADOS;
 
     public Integer getId() {
         return Id;
@@ -61,5 +63,13 @@ public class NotificacionSocio {
 
     public void setEstado(EstadoNotificacionSocio estado) {
         this.estado = estado;
+    }
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 }

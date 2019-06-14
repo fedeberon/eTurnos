@@ -142,14 +142,19 @@
                         <div class="box box-body">
 
                             <div class="col-md-12 column">
-                                <label for="socios" class="dropdown-menu"></label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="grupo" id="inlineRadio3" value="SOCIOS_ASIGNADOS">
+                                </label>
                                 <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
                             </div>
 
 
                             <div class="col-md-12 column">
+                                <label class="radio-inline">
+                                    <input type="radio" name="grupo" id="inlineRadio3" value="SOCIOS_POR_SEGMENTO">
+                                </label>
                                 <label>Segmentos</label>
-                                <select class="form-control">
+                                <select class="form-control" name="rubro" >
                                     <c:forEach items="${segmentos}" var="bo">
                                         <option>${bo.nombre}</option>
                                     </c:forEach>
@@ -158,8 +163,11 @@
 
                             </div>
                             <div class="col-md-12 column">
+                                <label class="radio-inline">
+                                    <input type="radio" name="grupo" id="inlineRadio3" value="SOCIOS_POR_RUBRO">
+                                </label>
                                 <label>Rubros</label>
-                                <select class="form-control">
+                                <select class="form-control" >
                                     <c:forEach items="${rubros}" var="bo">
                                         <option>${bo.nombre}</option>
                                     </c:forEach>

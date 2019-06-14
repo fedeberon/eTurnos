@@ -21,6 +21,9 @@ public class Segmento {
     @JoinColumn(name = "sociosRubro_id")
     private List<Rubro> rubros;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "segmentoDelSocio")
+    private List<SocioSoccam> socioSoccams;
+
     public Long getId() {
         return id;
     }
@@ -43,5 +46,14 @@ public class Segmento {
 
     public void setRubros(List<Rubro> rubros) {
         this.rubros = rubros;
+    }
+
+
+    public List<SocioSoccam> getSocioSoccams() {
+        return socioSoccams;
+    }
+
+    public void setSocioSoccams(List<SocioSoccam> socioSoccams) {
+        this.socioSoccams = socioSoccams;
     }
 }
