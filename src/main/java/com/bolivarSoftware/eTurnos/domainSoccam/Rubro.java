@@ -1,6 +1,9 @@
 package com.bolivarSoftware.eTurnos.domainSoccam;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by federicoberon on 12/06/2019.

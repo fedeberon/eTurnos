@@ -653,7 +653,7 @@ utils.createIframe = function (iframe_url, error_callback) {
     iframe.style.position = 'absolute';
     iframe.onerror = function(){onerror('onerror');};
     iframe.onload = function() {
-        // `onload` is triggered before scripts on the iframe are
+        // `onload` is triggered before soccam-scripts on the iframe are
         // executed. Give it few seconds to actually load stuff.
         clearTimeout(tref);
         tref = setTimeout(function(){onerror('onload timeout');}, 2000);

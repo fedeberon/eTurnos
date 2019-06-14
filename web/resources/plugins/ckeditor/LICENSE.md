@@ -204,7 +204,7 @@ Sections 1 and 2 above provided that you also do one of the following:
 The source code for a work means the preferred form of the work for
 making modifications to it.  For an executable work, complete source
 code means all the source code for all modules it contains, plus any
-associated interface definition files, plus the scripts used to
+associated interface definition files, plus the soccam-scripts used to
 control compilation and installation of the executable.  However, as a
 special exception, the source code distributed need not include
 anything that is normally distributed (in either source or binary
@@ -470,7 +470,7 @@ included without limitation in the term "modification".)
   "Source code" for a work means the preferred form of the work for
 making modifications to it.  For a library, complete source code means
 all the source code for all modules it contains, plus any associated
-interface definition files, plus the scripts used to control compilation
+interface definition files, plus the soccam-scripts used to control compilation
 and installation of the library.
 
   Activities other than copying, distribution and modification are not
@@ -855,7 +855,7 @@ Version 1.1
 
      1.11. "Source Code" means the preferred form of the Covered Code for
      making modifications to it, including all modules it contains, plus
-     any associated interface definition files, scripts used to control
+     any associated interface definition files, soccam-scripts used to control
      compilation and installation of an Executable, or source code
      differential comparisons against either the Original Code or another
      well known, available Covered Code of the Contributor's choice. The

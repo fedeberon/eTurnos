@@ -141,16 +141,26 @@
                     <div class="box">
                         <div class="box box-body">
 
-                            <div class="col-md-6 column">
+                            <div class="col-md-12 column">
                                 <label for="socios" class="dropdown-menu"></label>
                                 <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
                             </div>
 
 
-                            <div class="col-md-6 column">
+                            <div class="col-md-12 column">
                                 <label>Segmentos</label>
-                                <select>
+                                <select class="form-control">
                                     <c:forEach items="${segmentos}" var="bo">
+                                        <option>${bo.nombre}</option>
+                                    </c:forEach>
+
+                                </select>
+
+                            </div>
+                            <div class="col-md-12 column">
+                                <label>Rubros</label>
+                                <select class="form-control">
+                                    <c:forEach items="${rubros}" var="bo">
                                         <option>${bo.nombre}</option>
                                     </c:forEach>
 
