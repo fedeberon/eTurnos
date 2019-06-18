@@ -1,9 +1,7 @@
 package com.bolivarSoftware.eTurnos.domainSoccam;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by federicoberon on 12/06/2019.
@@ -19,6 +17,9 @@ public class Rubro {
 
     @Column(name = "sociosRubro_nombre")
     private String nombre;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "rubro")
+    private List<SocioSoccam> socioSoccams;
 
     public Long getId() {
         return id;
@@ -36,4 +37,11 @@ public class Rubro {
         this.nombre = nombre;
     }
 
+    public List<SocioSoccam> getSocioSoccams() {
+        return socioSoccams;
+    }
+
+    public void setSocioSoccams(List<SocioSoccam> socioSoccams) {
+        this.socioSoccams = socioSoccams;
+    }
 }

@@ -86,7 +86,7 @@
                         success: function(data){
                             var re = $.ui.autocomplete.escapeRegex(request.term);
                             var matcher = new RegExp("^" + re, "i");
-                            if(data.length == 0) return response(["No matching cities found for " + request.term]);
+                            if(data.length == 0) return response(["No se encontraron socios con " + request.term]);
                             response($.grep(($.map(data, function (v, i) {
                                 return {
                                     value: v.nombre,
@@ -142,40 +142,8 @@
                         <div class="box box-body">
 
                             <div class="col-md-12 column">
-                                <label class="radio-inline">
-                                    <input type="radio" name="grupo" id="inlineRadio3" value="SOCIOS_ASIGNADOS">
-                                </label>
                                 <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
                             </div>
-
-
-                            <div class="col-md-12 column">
-                                <label class="radio-inline">
-                                    <input type="radio" name="grupo" id="inlineRadio3" value="SOCIOS_POR_SEGMENTO">
-                                </label>
-                                <label>Segmentos</label>
-                                <select class="form-control" name="rubro" >
-                                    <c:forEach items="${segmentos}" var="bo">
-                                        <option>${bo.nombre}</option>
-                                    </c:forEach>
-
-                                </select>
-
-                            </div>
-                            <div class="col-md-12 column">
-                                <label class="radio-inline">
-                                    <input type="radio" name="grupo" id="inlineRadio3" value="SOCIOS_POR_RUBRO">
-                                </label>
-                                <label>Rubros</label>
-                                <select class="form-control" >
-                                    <c:forEach items="${rubros}" var="bo">
-                                        <option>${bo.nombre}</option>
-                                    </c:forEach>
-
-                                </select>
-
-                            </div>
-
 
                             <div class="col-md-6 column">
                                 <h4><span class="label label-primary">Socios a notificar</span></h4>

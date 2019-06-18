@@ -1,15 +1,20 @@
 package com.bolivarSoftware.eTurnos.services.notificacionSocio;
 
+import com.bolivarSoftware.eTurnos.beans.NotificacionesSocios;
 import com.bolivarSoftware.eTurnos.dao.interfaces.INotificacionSocioRepository;
 import com.bolivarSoftware.eTurnos.domain.Notificacion;
 import com.bolivarSoftware.eTurnos.domain.NotificacionSocio;
-import com.bolivarSoftware.eTurnos.domainSoccam.Rubro;
+import com.bolivarSoftware.eTurnos.domain.socio.Socio;
+import com.bolivarSoftware.eTurnos.domainSoccam.SocioSoccam;
 import com.bolivarSoftware.eTurnos.services.interfaces.INotificacionSocioService;
-import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.Grupo;
+import com.bolivarSoftware.eTurnos.services.soccam.interfaces.ISocioSoccamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Damian Gallego on 8/5/2019.
@@ -20,6 +25,8 @@ public class NotificacionSocioService implements INotificacionSocioService{
     @Autowired
     private INotificacionSocioRepository dao;
 
+    @Autowired
+    private ISocioSoccamService socioSoccamService;
 
     @Override
     public List<NotificacionSocio> findAllPageable(Integer page) {
@@ -51,9 +58,38 @@ public class NotificacionSocioService implements INotificacionSocioService{
         return dao.getByNotificacion(notificacion);
     }
 
-    public void grupoRubro(List<NotificacionSocio> notificacionSocios){
-        if(notificacionSocios.get(0).getGrupo().equals(Grupo.SOCIOS_POR_RUBRO)){
 
+
+    public void save(NotificacionesSocios notificacionSocio) {
+        List<NotificacionSocio> notificaciones = null;
+        List<SocioSoccam> socios;
+        switch (notificacionSocio.getGrupo()){
+            case SOCIOS_ASIGNADOS:return;
+            case SOCIOS_POR_SEGMENTO:
+                socios = notificacionSocio.getSegmento().getSocioSoccams();
+                notificaciones = createNotificacionesSocios(notificacionSocio.getNotificacion(), socios);
+                break;
+            case SOCIOS_POR_RUBRO:
+                socios = socioSoccamService.findByRubro(notificacionSocio.getRubro());
+                notificaciones = createNotificacionesSocios(notificacionSocio.getNotificacion(), socios);
+                break;
         }
+
+        if(Objects.nonNull(notificaciones) || !notificaciones.isEmpty()){
+            this.save(notificaciones);
+        }
+    }
+
+
+    private List<NotificacionSocio> createNotificacionesSocios(Notificacion notificacion, List<SocioSoccam> socios){
+        if(Objects.isNull(socios)) return Collections.emptyList();
+        List<NotificacionSocio> notificaciones = new ArrayList<>();
+        socios.forEach(socioSoccam -> {
+            Socio socio = new Socio();
+            socio.setId(socioSoccam.getId().longValue());
+            notificaciones.add(new NotificacionSocio(notificacion, socio));
+        });
+
+        return notificaciones;
     }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @DiscriminatorValue( value = "SOCIO" )
 public class Socio extends Cliente{
+
     @Transient
     private List<NotificacionSocio> notificacionesDelSocio;
 

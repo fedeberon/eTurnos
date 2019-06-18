@@ -105,7 +105,6 @@ public class NotificacionSocioRepository implements INotificacionSocioRepository
             return notificacionesSocios;
         }
         catch (HibernateException e){
-            tx.rollback();
             throw e;
         }
     }

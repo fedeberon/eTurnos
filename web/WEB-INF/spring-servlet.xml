@@ -60,7 +60,7 @@
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/soccam"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eturnos"/>
         <property name="user" value="root"/>
         <property name="password" value="root"/>
         <!--<property name="jdbcUrl" value="jdbc:mysqL://192.168.0.34:3306/soccam"/>-->
@@ -90,7 +90,7 @@
         <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
         <property name="jdbcUrl" value="jdbc:sqlserver://localhost;databaseName=SOCCAM"/>
         <property name="user" value="SA"/>
-        <property name="password" value="yourStrong(!)Password"/>
+        <property name="password" value="YourNewStrong!Passw0rd"/>
     </bean>
 
     <bean id="sessionFactorySoccam" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">

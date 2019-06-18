@@ -38,12 +38,6 @@ public class NotificacionSocioController {
     @Autowired
     private NotificacionValidator notificacionValidator;
 
-    @Autowired
-    private ISegmentoService segmentoService;
-
-    @Autowired
-    private IRubroService rubroService;
-
     @RequestMapping("save")
     public String save(@ModelAttribute NotificacionesSocios notificacionSocio, BindingResult result, Model model) {
         this.notificacionValidator.validate(notificacionSocio, result);
@@ -52,8 +46,10 @@ public class NotificacionSocioController {
         }
 
         model.addAttribute("notificacion", notificacionSocio.notificaciones);
-        notificacionSocioService.save(notificacionSocio.notificaciones);
-         return "redirect:/notificacion/list";
+
+        notificacionSocioService.save(notificacionSocio);
+
+        return "redirect:/notificacion/list";
     }
 
     @RequestMapping("list")
@@ -108,16 +104,6 @@ public class NotificacionSocioController {
     public NotificacionesSocios getNotificionesSocios(){
         return new NotificacionesSocios();
     }
-
-    @ModelAttribute("segmentos")
-    public List<Segmento> getSegmentos(){
-        return segmentoService.findAll();
-    }
-    @ModelAttribute("rubros")
-    public List<Rubro> getRubros(){
-        return rubroService.findAll();
-    }
-
 
 
 }

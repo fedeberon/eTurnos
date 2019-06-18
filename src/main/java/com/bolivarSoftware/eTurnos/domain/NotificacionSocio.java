@@ -31,6 +31,14 @@ public class NotificacionSocio {
     @Column(name = "NOT_SOC_ESTADO")
     private EstadoNotificacionSocio estado = EstadoNotificacionSocio.ACTIVO;
 
+    public NotificacionSocio() {
+    }
+
+    public NotificacionSocio(Notificacion notificacion, Socio socio) {
+        this.notificacion = notificacion;
+        this.socio = socio;
+    }
+
     private Grupo grupo = Grupo.SOCIOS_ASIGNADOS;
 
     public Integer getId() {

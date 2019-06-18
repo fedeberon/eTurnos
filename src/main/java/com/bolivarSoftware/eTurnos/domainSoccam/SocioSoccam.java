@@ -18,6 +18,10 @@ public class SocioSoccam {
     @JoinColumn(name="socio_segmento", nullable=false)
     private Segmento segmentoDelSocio;
 
+    @ManyToOne
+    @JoinColumn(name="socio_rubro", nullable=false)
+    private Rubro rubro;
+
     public Integer getId() {
         return id;
     }
@@ -32,5 +36,13 @@ public class SocioSoccam {
 
     public void setSegmentoDelSocio(Segmento segmentoDelSocio) {
         this.segmentoDelSocio = segmentoDelSocio;
+    }
+
+    public Rubro getRubro() {
+        return rubro;
+    }
+
+    public void setRubro(Rubro rubro) {
+        this.rubro = rubro;
     }
 }
