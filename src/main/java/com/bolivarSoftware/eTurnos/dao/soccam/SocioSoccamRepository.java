@@ -3,6 +3,7 @@ package com.bolivarSoftware.eTurnos.dao.soccam;
 import com.bolivarSoftware.eTurnos.dao.CloseableSession;
 import com.bolivarSoftware.eTurnos.dao.soccam.interfaces.ISocioSoccamRepository;
 import com.bolivarSoftware.eTurnos.domainSoccam.Rubro;
+import com.bolivarSoftware.eTurnos.domainSoccam.Segmento;
 import com.bolivarSoftware.eTurnos.domainSoccam.SocioSoccam;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -33,6 +34,18 @@ public class SocioSoccamRepository implements ISocioSoccamRepository {
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
             Query query = session.delegate().createQuery("From SocioSoccam where rubro = :rubro");
             query.setParameter("rubro" , rubro);
+            return query.list();
+        } catch (HibernateException e) {
+            LOGGER.error("No se pudo obtener la lista de Socios de Soccam.", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<SocioSoccam> findBySegmento(Segmento segmento) {
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            Query query = session.delegate().createQuery("From SocioSoccam where segmentoDelSocio = :segmentoDelSocio");
+            query.setParameter("segmentoDelSocio" , segmento);
             return query.list();
         } catch (HibernateException e) {
             LOGGER.error("No se pudo obtener la lista de Socios de Soccam.", e);

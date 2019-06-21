@@ -38,18 +38,23 @@ public class NotificacionSocioController {
     @Autowired
     private NotificacionValidator notificacionValidator;
 
+    @Autowired
+    private ISegmentoService segmentoService;
+
+    @Autowired
+    private IRubroService rubroService;
+
     @RequestMapping("save")
     public String save(@ModelAttribute NotificacionesSocios notificacionSocio, BindingResult result, Model model) {
-        this.notificacionValidator.validate(notificacionSocio, result);
+//        this.notificacionValidator.validate(notificacionSocio, result);
         if (result.hasErrors()){
-            return "notificacionSocio/create";
+            return "notificacionSocio/listSocio";
         }
 
         model.addAttribute("notificacion", notificacionSocio.notificaciones);
-
+        model.addAttribute("id", notificacionSocio.getNotificacion().getId());
         notificacionSocioService.save(notificacionSocio);
-
-        return "redirect:/notificacion/list";
+         return "redirect:listSocio";
     }
 
     @RequestMapping("list")
@@ -80,6 +85,15 @@ public class NotificacionSocioController {
         return "redirect:list";
     }
 
+    @RequestMapping("delete")
+        public String delete (@RequestParam Integer id, RedirectAttributes redirectAttributes){
+        NotificacionSocio notificacionSocio = notificacionSocioService.get(id);
+        redirectAttributes.addAttribute("id", notificacionSocio.getNotificacion().getId());
+        notificacionSocioService.delete(id);
+
+        return "redirect:listSocio";
+    }
+
     @RequestMapping("create")
     public String create(@RequestParam Integer id, Model model) {
         model.addAttribute("id", id);
@@ -91,6 +105,17 @@ public class NotificacionSocioController {
         model.addAttribute("notificacion", notificacion);
 
         return "notificacionSocio/create";
+    }
+    @RequestMapping("listSocio")
+    public String listSocio(@RequestParam Integer id, Model model){
+        Notificacion notificacion = notificacionService.get(id);
+        List<NotificacionSocio> sociosNotificados = notificacionSocioService.getByNotificacion(notificacion);
+        model.addAttribute("listSocio", notificacionSocioService.get(id));
+        model.addAttribute("id", id);
+        model.addAttribute("sociosNotificados", sociosNotificados);
+        model.addAttribute("notificacion", notificacion);
+
+        return "notificacionSocio/listSocio";
     }
 
     @RequestMapping("show")
@@ -104,6 +129,18 @@ public class NotificacionSocioController {
     public NotificacionesSocios getNotificionesSocios(){
         return new NotificacionesSocios();
     }
+
+    @ModelAttribute("segmentos")
+    public List<Segmento> getSegmentos(){
+        return segmentoService.findAll();
+    }
+
+    @ModelAttribute("rubros")
+    public List<Rubro> getRubros(){
+        return rubroService.findAll();
+    }
+
+
 
 
 }

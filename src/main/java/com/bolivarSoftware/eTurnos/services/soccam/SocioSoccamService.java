@@ -2,6 +2,7 @@ package com.bolivarSoftware.eTurnos.services.soccam;
 
 import com.bolivarSoftware.eTurnos.dao.soccam.interfaces.ISocioSoccamRepository;
 import com.bolivarSoftware.eTurnos.domainSoccam.Rubro;
+import com.bolivarSoftware.eTurnos.domainSoccam.Segmento;
 import com.bolivarSoftware.eTurnos.domainSoccam.SocioSoccam;
 import com.bolivarSoftware.eTurnos.services.soccam.interfaces.ISocioSoccamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class SocioSoccamService implements ISocioSoccamService {
     @Override
     public List<SocioSoccam> findByRubro(Rubro rubro){
         return dao.findByRubro(rubro);
+    }
+
+    @Override
+    public List<SocioSoccam> findBySegmento(Segmento segmento) {
+        return dao.findBySegmento(segmento);
     }
 
 

@@ -31,23 +31,23 @@
                             <table id="notificacion" class="table table-bordered table-hover">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>Codigo</th>
-                                    <th>Mensaje</th>
-                                    <th>Desde</th>
-                                    <th>Hasta</th>
-                                    <th>Agregar socio a notificar</th>
-                                    <th>Editar notificaci&oacute;n</th>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Mensaje</th>
+                                    <th class="text-center">Desde</th>
+                                    <th class="text-center">Hasta</th>
+                                    <th class="text-center">Agregar socio a notificar</th>
+                                    <th class="text-center">Editar notificaci&oacute;n</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <c:forEach items="${notificacion}" var="bo" >
                                     <tr>
-                                        <td class="col-md-1">${bo.id}</td>
-                                        <td class="col-md-5">${bo.message}</td>
-                                        <td class="col-md-2"><fmt:formatDate value="${bo.desde}" pattern="dd-MM-yyyy"/></td>
-                                        <td class="col-md-2"><fmt:formatDate value="${bo.hasta}" pattern="dd-MM-yyyy"/></td>
-                                        <td class="col-md-1">
+                                        <td class="col-md-1 text-center"><a class="btn btn-primary" href="<c:url value='/notificacionSocio/listSocio?id=${bo.id}'/>">${bo.id}</a></td>
+                                        <td class="col-md-5 text-center">${bo.message}</td>
+                                        <td class="col-md-2 text-center"><fmt:formatDate value="${bo.desde}" pattern="dd-MM-yyyy"/></td>
+                                        <td class="col-md-2 text-center"><fmt:formatDate value="${bo.hasta}" pattern="dd-MM-yyyy"/></td>
+                                        <td class="col-md-1 text-center">
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -62,7 +62,7 @@
                                                 <a class="btn btn-primary" href="<c:url value='/notificacionSocio/create?id=${bo.id}'/>"/>Agregar Socios
                                             -->
                                         </td>
-                                        <td class="col-md-1"> <a class="btn btn-primary" href="<c:url value='/notificacion/update?id=${bo.id}'/>"/>Editar</td>
+                                        <td class="col-md-1 text-center"> <a class="btn btn-primary" href="<c:url value='/notificacion/update?id=${bo.id}'/>"/>Editar</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -106,7 +106,7 @@
 
 
         <form:form action="../notificacionSocio/save" modelAttribute="notificaciones">
-        <input name="notificacion.id" type="hidden" id="notificacion-id"/>
+             <input name="notificacion.id" type="hidden" id="notificacion-id-rubro"/>
             <input type="hidden" name="grupo" value="SOCIOS_POR_RUBRO">
         <!-- Modal content-->
         <div class="modal-content">
@@ -141,7 +141,7 @@
     <div class="modal-dialog">
 
         <form:form action="../notificacionSocio/save" modelAttribute="notificaciones">
-            <input name="notificacion.id" type="hidden" id="notificacion-id"/>
+            <input name="notificacion.id" type="hidden" id="notificacion-id-segmento"/>
             <input name="grupo" type="hidden" value="SOCIOS_POR_SEGMENTO">
         <!-- Modal content-->
         <div class="modal-content">
@@ -184,13 +184,13 @@
     $(document).ready(function(){
         $(".btn-notificacion-rubro").click(function(){
             var id = $(this).attr('id');
-            $('#notificacion-id').val(id);
+            $('#notificacion-id-rubro').val(id);
             $("#modal-rubros").modal();
         });
 
         $(".btn-notificacion-segmento").click(function(){
             var id = $(this).attr('id');
-            $('#notificacion-id').val(id);
+            $('#notificacion-id-segmento').val(id);
             $("#modal-segmentos").modal();
         });
     });

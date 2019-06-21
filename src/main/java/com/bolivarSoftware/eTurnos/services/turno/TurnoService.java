@@ -8,9 +8,7 @@ import com.bolivarSoftware.eTurnos.services.interfaces.IPuestoDeAtencionService;
 import com.bolivarSoftware.eTurnos.services.interfaces.ITurnoService;
 import com.bolivarSoftware.eTurnos.services.interfaces.IUsuarioService;
 import com.bolivarSoftware.eTurnos.utils.UtilDate;
-import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.EstadoNotificacionSocio;
 import com.bolivarSoftware.eTurnos.websocket.IWebSocketService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

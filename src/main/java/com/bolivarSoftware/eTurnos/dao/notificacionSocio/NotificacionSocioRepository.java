@@ -108,4 +108,21 @@ public class NotificacionSocioRepository implements INotificacionSocioRepository
             throw e;
         }
     }
+
+    @Override
+    public void delete(Integer id) {
+        Transaction tx = null;
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            tx = session.delegate().getTransaction();
+            tx.begin();
+            NotificacionSocio notificacionSocio = (NotificacionSocio) session.delegate().get(NotificacionSocio.class, id);
+            session.delegate().delete(notificacionSocio);
+            tx.commit();
+        }
+        catch (HibernateException e){
+            LOGGER.error("No se pudo eliminar la notificacion socio{}.", new Object[]{id}, e);
+            tx.rollback();
+            throw e;
+        }
+    }
 }

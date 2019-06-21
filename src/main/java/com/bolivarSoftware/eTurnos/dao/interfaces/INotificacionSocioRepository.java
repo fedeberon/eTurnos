@@ -20,4 +20,6 @@ public interface INotificacionSocioRepository {
     List<NotificacionSocio> getBySocio(Long idSocio);
 
     List<NotificacionSocio> getByNotificacion(Notificacion notificacion);
+
+    void delete(Integer id);
 }

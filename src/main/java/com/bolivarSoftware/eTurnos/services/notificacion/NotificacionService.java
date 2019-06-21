@@ -43,7 +43,4 @@ public class NotificacionService implements INotificacionService{
     public List<NotificacionSocio> getById(Integer idNotificacion) {
         return dao.getById(idNotificacion);
     }
-
-
-
 }

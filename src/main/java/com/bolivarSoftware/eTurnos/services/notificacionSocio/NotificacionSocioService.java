@@ -58,15 +58,16 @@ public class NotificacionSocioService implements INotificacionSocioService{
         return dao.getByNotificacion(notificacion);
     }
 
-
-
     public void save(NotificacionesSocios notificacionSocio) {
         List<NotificacionSocio> notificaciones = null;
         List<SocioSoccam> socios;
+
         switch (notificacionSocio.getGrupo()){
-            case SOCIOS_ASIGNADOS:return;
+            case SOCIOS_ASIGNADOS:
+                notificaciones = notificacionSocio.getNotificaciones();
+                break;
             case SOCIOS_POR_SEGMENTO:
-                socios = notificacionSocio.getSegmento().getSocioSoccams();
+                socios = socioSoccamService.findBySegmento(notificacionSocio.getSegmento());
                 notificaciones = createNotificacionesSocios(notificacionSocio.getNotificacion(), socios);
                 break;
             case SOCIOS_POR_RUBRO:
@@ -91,5 +92,10 @@ public class NotificacionSocioService implements INotificacionSocioService{
         });
 
         return notificaciones;
+    }
+
+    @Override
+    public void delete (Integer id){
+        dao.delete(id);
     }
 }
