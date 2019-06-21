@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Turnos:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="Turnos-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="Turnos:war exploded" />
-    </root>
-  </artifact>
-</component>

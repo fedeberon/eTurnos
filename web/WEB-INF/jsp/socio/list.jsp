@@ -48,7 +48,7 @@
                                     <th>CUIT</th>
                                     <th>eMail</th>
                                     <th>Firma</th>
-                                    <th>Empres</th>
+                                    <th>Empresa</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -63,7 +63,7 @@
                                         <td>${bo.eMail}</td>
                                         <td>${bo.firma}</td>
                                         <td>${bo.tipoEmpresa}</td>
-                                        <td><span class="glyphicon glyphicon-remove"></span></td>
+                                        <td>  <a href="<c:url value='/notificacionSocio/list?idSocio=${bo.id}'/>" class="btn btn-block btn-primary">Notificaciones</a></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -73,6 +73,10 @@
                                     <th>Nombre</th>
                                     <th>Rol</th>
                                     <th>Estado</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                     <th></th>
                                 </tr>
                                 </tfoot>
