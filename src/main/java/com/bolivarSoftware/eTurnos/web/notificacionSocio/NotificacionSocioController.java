@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Damian Gallego on 8/5/2019.
@@ -45,16 +46,20 @@ public class NotificacionSocioController {
     private IRubroService rubroService;
 
     @RequestMapping("save")
-    public String save(@ModelAttribute NotificacionesSocios notificacionSocio, BindingResult result, Model model) {
-//        this.notificacionValidator.validate(notificacionSocio, result);
-        if (result.hasErrors()){
-            return "notificacionSocio/listSocio";
+    public String save(@ModelAttribute NotificacionesSocios notificacionSocio, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+        this.notificacionValidator.validate(notificacionSocio, result);
+        if (result.hasErrors()) {
+            model.addAttribute("socioError", "Socio no encontrado");
         }
 
-        model.addAttribute("notificacion", notificacionSocio.notificaciones);
-        model.addAttribute("id", notificacionSocio.getNotificacion().getId());
         notificacionSocioService.save(notificacionSocio);
-         return "redirect:listSocio";
+
+        Integer id = notificacionSocio.getNotificacion().getId();
+        if(Objects.isNull(id)) id = notificacionSocio.getNotificaciones().get(0).getNotificacion().getId();
+
+        redirectAttributes.addAttribute("id", id);
+
+        return "redirect:listSocio";
     }
 
     @RequestMapping("list")
@@ -66,7 +71,7 @@ public class NotificacionSocioController {
     }
 
     @RequestMapping("activar")
-    public String activarNotificacion(@RequestParam Integer id, RedirectAttributes redirectAttributes){
+    public String activarNotificacion(@RequestParam Integer id, RedirectAttributes redirectAttributes) {
         NotificacionSocio notificacionSocio = notificacionSocioService.get(id);
         notificacionSocio.setEstado(EstadoNotificacionSocio.ACTIVO);
         redirectAttributes.addAttribute("idSocio", notificacionSocio.getSocio().getId());
@@ -76,7 +81,7 @@ public class NotificacionSocioController {
     }
 
     @RequestMapping("desactivar")
-    public String desactivarNotificacion(@RequestParam Integer id, RedirectAttributes redirectAttributes){
+    public String desactivarNotificacion(@RequestParam Integer id, RedirectAttributes redirectAttributes) {
         NotificacionSocio notificacionSocio = notificacionSocioService.get(id);
         notificacionSocio.setEstado(EstadoNotificacionSocio.INACTIVO);
         redirectAttributes.addAttribute("idSocio", notificacionSocio.getSocio().getId());
@@ -86,7 +91,7 @@ public class NotificacionSocioController {
     }
 
     @RequestMapping("delete")
-        public String delete (@RequestParam Integer id, RedirectAttributes redirectAttributes){
+    public String delete(@RequestParam Integer id, RedirectAttributes redirectAttributes) {
         NotificacionSocio notificacionSocio = notificacionSocioService.get(id);
         redirectAttributes.addAttribute("id", notificacionSocio.getNotificacion().getId());
         notificacionSocioService.delete(id);
@@ -106,14 +111,14 @@ public class NotificacionSocioController {
 
         return "notificacionSocio/create";
     }
+
     @RequestMapping("listSocio")
-    public String listSocio(@RequestParam Integer id, Model model){
+    public String listSocio(@RequestParam Integer id, Model model) {
         Notificacion notificacion = notificacionService.get(id);
         List<NotificacionSocio> sociosNotificados = notificacionSocioService.getByNotificacion(notificacion);
-        model.addAttribute("listSocio", notificacionSocioService.get(id));
-        model.addAttribute("id", id);
         model.addAttribute("sociosNotificados", sociosNotificados);
         model.addAttribute("notificacion", notificacion);
+
 
         return "notificacionSocio/listSocio";
     }

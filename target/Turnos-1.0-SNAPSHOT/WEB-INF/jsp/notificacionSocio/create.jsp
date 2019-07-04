@@ -101,7 +101,7 @@
                             }))
                         }});
                 },
-                minLength: 2,
+                minLength: 1,
                 select: function( event, ui ) {
                     log(ui.item.id,  ui.item.label);
                 }
@@ -145,6 +145,10 @@
 
                             <div class="col-md-12 column">
                                 <input id="socios" type="text" class="form-control" placeholder="Agregar Socios" onclick="this.select()" required>
+                                <c:if test="${not empty socioError}">
+                                    <span class="label label-danger">${socioError}</span>
+
+                                </c:if>
                             </div>
 
                             <div class="col-md-6 column">
@@ -187,7 +191,7 @@
 
 
                             <div class="col-md-6 column">
-                            <button type="submit" class="btn btn-primary" action="save"  method="post" href="<c:url value='/notificacionSocio/save?id=${bo.id}'/>">Guardar</button>
+                            <button type="submit" class="btn btn-primary" action="save"  method="post">Guardar</button>
                             </div>
                         </div>
                     </div>

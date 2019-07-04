@@ -65,6 +65,7 @@ public class NotificacionesSocios {
     public void setNotificacion(Notificacion notificacion) {
         this.notificacion = notificacion;
     }
+
 }
 
 

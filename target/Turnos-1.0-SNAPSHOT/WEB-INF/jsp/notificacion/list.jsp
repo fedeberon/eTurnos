@@ -31,7 +31,7 @@
                             <table id="notificacion" class="table table-bordered table-hover">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                        <th class="text-center">ID</th>
                                     <th class="text-center">Mensaje</th>
                                     <th class="text-center">Desde</th>
                                     <th class="text-center">Hasta</th>

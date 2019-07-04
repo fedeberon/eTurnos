@@ -88,9 +88,15 @@
 
     <bean id="dataSourceSoccam" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <!--<property name="jdbcUrl" value="jdbc:sqlserver://localhost:1433;databaseName=soccam"/>-->
+        <!--<property name="user" value="eTurnos"/>-->
+        <!--<property name="password" value="eTurnos"/>-->
+
+        <!--DOCKER-->
         <property name="jdbcUrl" value="jdbc:sqlserver://localhost;databaseName=SOCCAM"/>
         <property name="user" value="SA"/>
         <property name="password" value="yourStrong(!)Password"/>
+
     </bean>
 
     <bean id="sessionFactorySoccam" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
