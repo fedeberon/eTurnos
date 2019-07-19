@@ -11,7 +11,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Socios <small> Todos</small>
+                Socios
+                <small> Todos</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Socios</a></li>
@@ -29,7 +30,8 @@
 
                             <form action="<c:url value='/socio/buscar'/>">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" name="valor" value="${valor}" placeholder="Ingrese datos del socio a buscar ..">
+                                    <input type="text" class="form-control" name="valor" value="${valor}"
+                                           placeholder="Ingrese datos del socio a buscar ..">
                                     <span class="input-group-btn">
                                       <button type="submit" class="btn btn-info btn-flat">Buscar!</button>
                                     </span>
@@ -49,7 +51,8 @@
                                     <th>eMail</th>
                                     <th>Firma</th>
                                     <th>Empresa</th>
-                                    <th></th>
+                                    <th>Notificaciones</th>
+                                    <th>Beneficiario</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -63,7 +66,27 @@
                                         <td>${bo.eMail}</td>
                                         <td>${bo.firma}</td>
                                         <td>${bo.tipoEmpresa}</td>
-                                        <td>  <a href="<c:url value='/notificacionSocio/list?idSocio=${bo.id}'/>" class="btn btn-block btn-primary">Notificaciones</a></td>
+                                        <td class="text-center"><a
+                                                href="<c:url value='/notificacionSocio/list?idSocio=${bo.id}'/>"><span
+                                                class="glyphicon glyphicon-eye-open"></span></a></td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a id="${bo.id}"
+                                                           href="<c:url value='/beneficiario/listBeneficiario?id=${bo.id}'/>">Lista</a>
+                                                    </li>
+                                                    <li><a href="<c:url value='/beneficiario/create?id=${bo.id}'/>">Nuevo</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -128,6 +151,7 @@
 <script src="<c:url value='/resources/plugins/datatables/jquery.dataTables.js'/>"></script>
 <!-- AdminLTE App -->
 <script src="<c:url value='/resources/dist/js/app.js'/>"></script>
+
 
 <script>
     $(function () {

@@ -18,7 +18,6 @@ public class NotificacionService implements INotificacionService{
     @Autowired
     private INotificacionRepository dao;
 
-
     @Override
     public List<Notificacion> findAllPageable(Integer page) {
         return dao.findAllPageable(page);

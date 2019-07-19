@@ -30,20 +30,24 @@ import java.util.Objects;
 @RequestMapping("notificacionSocio")
 public class NotificacionSocioController {
 
-    @Autowired
     private NotificacionSocioService notificacionSocioService;
 
-    @Autowired
     private NotificacionService notificacionService;
 
-    @Autowired
     private NotificacionValidator notificacionValidator;
 
-    @Autowired
     private ISegmentoService segmentoService;
 
-    @Autowired
     private IRubroService rubroService;
+
+    @Autowired
+    public NotificacionSocioController(NotificacionSocioService notificacionSocioService, NotificacionService notificacionService, NotificacionValidator notificacionValidator, ISegmentoService segmentoService, IRubroService rubroService) {
+        this.notificacionSocioService = notificacionSocioService;
+        this.notificacionService = notificacionService;
+        this.notificacionValidator = notificacionValidator;
+        this.segmentoService = segmentoService;
+        this.rubroService = rubroService;
+    }
 
     @RequestMapping("save")
     public String save(@ModelAttribute NotificacionesSocios notificacionSocio, BindingResult result, Model model, RedirectAttributes redirectAttributes) {

@@ -28,7 +28,7 @@
                     <div class="box box-primary">
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form:form modelAttribute="notificacion" action="/turnos/notificacion/save"  method="post">
+                        <form:form modelAttribute="beneficiarios" action="/turnos/notificacion/save"  method="post">
                             <div class="box-body">
                                 <div class="row">
                                     <div class="form-group col-md-6">

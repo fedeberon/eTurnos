@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import java.util.Objects;
-
 /**
  * Created by Damian Gallego on 22/5/2019.
  */

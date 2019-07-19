@@ -54,6 +54,8 @@
                     <a href="#"><i class="fa fa-th-list"></i> <span>Socios</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="<c:url value='/socio/list'/>">Todos</a></li>
+                        <li><a href="<c:url value='/beneficiario/list'/>">Beneficiarios</a></li>
+
                     </ul>
                 </li>
             </sec:authorize>
