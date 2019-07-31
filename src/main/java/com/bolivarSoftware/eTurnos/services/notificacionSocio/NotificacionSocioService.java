@@ -11,10 +11,7 @@ import com.bolivarSoftware.eTurnos.services.soccam.interfaces.ISocioSoccamServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by Damian Gallego on 8/5/2019.
@@ -51,8 +48,9 @@ public class NotificacionSocioService implements INotificacionSocioService{
 
     @Override
     public List<NotificacionSocio> getBySocio(Long idSocio) {
-        return dao.getBySocio(idSocio);
-    }
+            return dao.getBySocio(idSocio);
+        }
+
 
     public List<NotificacionSocio> getByNotificacion(Notificacion notificacion) {
         return dao.getByNotificacion(notificacion);
@@ -62,7 +60,8 @@ public class NotificacionSocioService implements INotificacionSocioService{
         List<NotificacionSocio> notificaciones = null;
         List<SocioSoccam> socios;
 
-        switch (notificacionSocio.getGrupo()){
+        switch (notificacionSocio.getGrupo()) {
+
             case SOCIOS_ASIGNADOS:
                 notificaciones = notificacionSocio.getNotificaciones();
                 break;
@@ -73,6 +72,11 @@ public class NotificacionSocioService implements INotificacionSocioService{
             case SOCIOS_POR_RUBRO:
                 socios = socioSoccamService.findByRubro(notificacionSocio.getRubro());
                 notificaciones = createNotificacionesSocios(notificacionSocio.getNotificacion(), socios);
+                break;
+            case CLIENTES:
+                Notificacion notificacion = notificacionSocio.getNotificaciones().get(0).getNotificacion();
+                notificaciones = Arrays.asList(notificacionSocio.getNotificaciones().get(0));
+                notificacionSocio.setNotificacion(notificacion);
                 break;
         }
 

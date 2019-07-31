@@ -70,7 +70,7 @@ public class NotificacionSocioRepository implements INotificacionSocioRepository
     @Override
     public List<NotificacionSocio> getBySocio(Long idSocio) {
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            Query query = session.delegate().createQuery("From  NotificacionSocio where socio.id = ? order by id desc");
+            Query query = session.delegate().createQuery("From  NotificacionSocio where socio.id = ? or socio.id = 0 or socio.id = -1 order by id desc");
             query.setLong(0 , idSocio);
             return query.list();
         }

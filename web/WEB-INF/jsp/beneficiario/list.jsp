@@ -29,7 +29,7 @@
 
                             <form action="<c:url value='/beneficiario/buscar'/>">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" name="valor" value="${valor}" placeholder="Ingrese datos del socio a buscar ..">
+                                    <input type="text" class="form-control" name="valor" value="${valor}" placeholder="Ingrese datos del beneficiari a buscar ..">
                                     <span class="input-group-btn">
                                       <button type="submit" class="btn btn-info btn-flat">Buscar!</button>
                                     </span>
@@ -49,6 +49,7 @@
                                     <th class="text-center">Socio</th>
                                     <th class="text-center">Eliminar</th>
                                     <th class="text-center">Editar</th>
+                                    <th class="text-center">Exportar Credencial</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,6 +63,7 @@
                                         <td class="text-center">${bo.socioExtension}</td>
                                         <td class="text-center"><a href="<c:url value='/beneficiario/delete?id=${bo.id}'/>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <td class="text-center"> <a href="<c:url value='/beneficiario/update?id=${bo.id}'/>"/><span class="glyphicon glyphicon-pencil"></span></td>
+                                        <td class="text-center"> <a href="<c:url value='/beneficiario/exportarCredencial?id=${bo.id}'/>"  target="_blank"  onclick="$('#Searching_Modal').modal('show')"><span class="glyphicon glyphicon-credit-card"></span></a> </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

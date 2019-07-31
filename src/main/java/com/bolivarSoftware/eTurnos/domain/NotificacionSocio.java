@@ -5,7 +5,6 @@ import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.EstadoNotifi
 import com.bolivarSoftware.eTurnos.web.notificacionSocio.enumerador.Grupo;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by Damian Gallego on 2/5/2019.
@@ -80,4 +79,5 @@ public class NotificacionSocio {
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }
+
 }

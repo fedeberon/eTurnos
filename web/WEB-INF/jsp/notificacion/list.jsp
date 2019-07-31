@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML>
 <html>
+<style><%@include file="/resources/notificacion/listNotificacion.css"%></style>
+</head>
 <jsp:include page="../header.jsp"/>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -53,9 +55,13 @@
                                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                                     Notificar <span class="caret"></span></button>
                                                 <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#" onclick="openModal(${bo.id}, 0, 'todos')">Todos</a></li>
+                                                    <li><a href="#" onclick="openModal(${bo.id}, -1, 'Socios')">Socios</a></li>
+                                                    <li><a href="#" onclick="openModal(${bo.id}, -2, 'No Socios')">No Socios</a></li>
                                                     <li><a href="<c:url value='/notificacionSocio/create?id=${bo.id}'/>">Socios</a></li>
                                                     <li><a id="${bo.id}" href="#" class="btn-notificacion-rubro">Rubros</a></li>
                                                     <li><a id="${bo.id}" href="#" class="btn-notificacion-segmento">Segmentos</a></li>
+
                                                 </ul>
                                             </div>
                                             <!--
@@ -100,7 +106,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal de Rubro -->
 <div class="modal fade" id="modal-rubros" role="dialog">
     <div class="modal-dialog">
 
@@ -136,7 +142,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal de Segmentos -->
 <div class="modal fade" id="modal-segmentos" role="dialog">
     <div class="modal-dialog">
 
@@ -149,7 +155,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Segmentos</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="modal-todos">
 
                 <p>Seleccione un segmento</p>
 
@@ -169,6 +175,37 @@
     </div>
 </div>
 
+
+<!-- Modal de Notificacion general -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form:form action="../notificacionSocio/save" modelAttribute="notificaciones">
+            <input name="notificaciones[0].notificacion.id" type="hidden" id="notificacion-id"/>
+            <input name="notificaciones[0].socio.id" type="hidden" id="socio-id">
+            <input name="grupo" type="hidden" value="CLIENTES">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <%--<h3 class="modal-title text-center" id="exampleModalLabel">Notificacion para <label class="cliente"></label></h3>--%>
+                    <h3 class="notice notice-danger modal-title text-center" id="exampleModalLabel">
+                        <strong>Notificacion</strong> para <label class="cliente"></label>
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Atencion!</strong> Estas por notificar a  <label class="cliente"></label>. Desea confirmar la notificacion?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-default">Confirmar</button>
+                </div>
+            </div>
+        </form:form>
+    </div>
+</div>
 
 <!-- jQuery 2.2.0 -->
 <script src="<c:url value='/resources/plugins/jQuery/jQuery-2.2.0.min.js'/>"></script>
@@ -193,7 +230,20 @@
             $('#notificacion-id-segmento').val(id);
             $("#modal-segmentos").modal();
         });
+
+
+        $('#myModal').modal({
+            show:false
+        });
+
     });
+
+    function openModal(idNotificacion, idSocio, cliente) {
+        $('#myModal').modal('show');
+        $('#notificacion-id').val(idNotificacion);
+        $('#socio-id').val(idSocio);
+        $('.cliente').html(cliente);
+    }
 
 </script>
 

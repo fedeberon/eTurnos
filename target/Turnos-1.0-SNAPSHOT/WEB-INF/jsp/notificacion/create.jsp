@@ -53,7 +53,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <h4 for="message"><span class="label label-primary">Mensaje</span></h4>

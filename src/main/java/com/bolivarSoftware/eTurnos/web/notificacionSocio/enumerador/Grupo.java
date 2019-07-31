@@ -7,6 +7,8 @@ public enum  Grupo {
 
     SOCIOS_ASIGNADOS,
     SOCIOS_POR_SEGMENTO,
-    SOCIOS_POR_RUBRO
+    SOCIOS_POR_RUBRO,
+    CLIENTES
+
 
 }

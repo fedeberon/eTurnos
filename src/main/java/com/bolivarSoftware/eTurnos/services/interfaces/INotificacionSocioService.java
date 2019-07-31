@@ -15,6 +15,5 @@ public interface INotificacionSocioService {
     NotificacionSocio get(Integer id);
     List<NotificacionSocio> save(List<NotificacionSocio> notificacionesSocios);
     List<NotificacionSocio> getBySocio(Long idSocio);
-
     void delete(Integer id);
 }

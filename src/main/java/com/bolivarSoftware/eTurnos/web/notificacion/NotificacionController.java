@@ -57,7 +57,6 @@ public class NotificacionController {
         return "notificacion/create";
     }
 
-
     @ModelAttribute("notificacion")
     public Notificacion getNotificacion() {
         return new Notificacion();
@@ -67,7 +66,6 @@ public class NotificacionController {
     public NotificacionesSocios getNotificaciones() {
         return new NotificacionesSocios();
     }
-
 
     @RequestMapping(value={"update"})
     public String update(@RequestParam Integer id, Model model) {

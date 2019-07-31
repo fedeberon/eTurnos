@@ -67,7 +67,7 @@
                                         <td>${bo.firma}</td>
                                         <td>${bo.tipoEmpresa}</td>
                                         <td class="text-center"><a
-                                                href="<c:url value='/notificacionSocio/list?idSocio=${bo.id}'/>"><span
+                                                href="<c:url value='/notificacionSocio/list?idSocio=${bo.id}'/>" target="_blank"><span
                                                 class="glyphicon glyphicon-eye-open"></span></a></td>
                                         <td class="text-center">
                                             <div class="btn-group">
